@@ -1,21 +1,76 @@
 <HTML>
 <HAED>
 <META http-equiv="content-type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+ <title>국민정보관리시스템</title>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Stylish&display=swap" rel="stylesheet">
 </HAED>
+<style>
+ *{
+    font-family: 'Stylish', sans-serif;
+    }
+	 .wrap {
+                width: 1400px;
+                margin: auto;
+            }
+	 #post-box {
+                width: 500px;
+                margin: 20px auto;
+                padding: 50px;
+                border: black solid;
+                border-radius: 5px;
+            }
 
+</style>
 <BODY>
-
-<h1> 국민 정보 관리 시스템 </h1>
-
-<a href='select.php'> (1) 국민 정보 조회 (조회 후 수정/삭제 가능) </a> <br><br>
-<a href='insert.php'> (2) 신규 등록 </a> <br><br>
-<FORM METHOD="get" ACTION="update.php">
-	(3) 정보 수정 - 주민등록번호 : <INPUT TYPE="text" ssn="ssn">
+<div class="wrap">
+<h1 class="display-4"> 정보 관리 시스템  with 코로나바이러스감염증-19(COVID-19) </h1> 
+	<p class="lead"> COVID-19와 관련한 국민 정보, 백신 정보, 병원, 제약사 정보 등을 제공합니다. </p>
+	<hr class="my-4">
+	<p class="lead">
+	<button type="button" class="btn btn-primary active" id="btn"
+	onclick="document.location.href='ynhos.html'">
+	경북대학교 병원으로 이동하기
+	</button>
+	<button type="button" class="btn btn-primary active" id="btn"
+	onclick="document.location.href='ynhos.html'">
+	대구병원으로 이동하기
+	</button>
+	<button type="button" class="btn btn-primary active" id="btn"
+	onclick="document.location.href='ynhos.html'">
+	영남대학교 병원으로 이동하기
+	</button>
+	<button type="button" class="btn btn-primary active" id="btn"
+	onclick="document.location.href='ynhos.html'">
+	제약사 홈페이지로 이동하기
+	</button>
+</div><br><br>
+<div class="wrap">
+<br><a href='select.php'> (1) 국민 정보 조회 (조회 후 수정/삭제 가능) </a> <br><br>
+<br><br><a href='insert.php'> (2) 국민 정보 신규 등록 </a> <br><br>
+<br><br><FORM METHOD="get" ACTION="update.php">
+	(3) 국민 정보 수정 - 주민등록번호 입력 : <INPUT TYPE="text" ssn="ssn">
 	<INPUT TYPE="submit" VALUE="수정">
 	</FORM>
-<FORM METHOD="get" ACTION="delete.php">
-(4) 정보 삭제 - 주민등록번호 : <INPUT TYPE ="text" ssn="ssn">
-<INPUT TYPE="submit" VALUE="삭제">
-</FORM>
+<br><br> <a href='support.html'>(4) 피해지원정책 </a> <br><br>
+<br><br> <a href='confirmed.php'>(5) 확진자 현황 </a> <br><br>
+<br><br> <a href='confirmed.html'>(6) 제약사 </a> <br><br>
+<br><br> <a href='confirmed.html'>(7) 병원 </a> <br><br>
+<br><br> <a href='confirmed.html'>(8) 전체적인 재고 조회(백신) </a> <br><br>
+<br><br> <a href='confirmed.html'>(9) 백신 </a> <br><br>
+</div>
 </BODY>
 </HTML>

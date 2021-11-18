@@ -40,7 +40,6 @@
 </style>
 
 <BODY>
-<div class="wrap">
 
 <h1> 피해지원정책 </h1>
 	<hr class="my-4">
@@ -56,6 +55,5 @@
 (4) <INPUT TYPE ="text" ssn="ssn">
 <INPUT TYPE="submit" VALUE="삭제">
 </FORM>
-</div>
 </BODY>
 </HTML>

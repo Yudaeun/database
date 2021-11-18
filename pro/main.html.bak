@@ -60,8 +60,6 @@
 	onclick="document.location.href='ynhos.html'">
 	제약사 홈페이지로 이동하기
 	</button>
-	<hr class="my-4">
-	<p class="lead">
 </div><br><br>
 <div class="wrap">
 <br><button type="button" class="btn btn-primary active" id="btn"

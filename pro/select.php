@@ -13,7 +13,7 @@
 		exit();
 	}
 	
-	echo "<h1> 회원 조회 결과 </h1>";
+	echo "<h1> 국민 정보 조회 결과 </h1>";
 	echo "<TABLE border=1>";
 	echo "<TR>";
 	echo "<TH>ssn</TH><TH>이름</TH><TH>성별</TH><TH>주소</TH><TH>건강보험증코드</TH><TH>연락처</TH><TH>사망일</TH><TH>확진여부</TH><TH>자가격리여부</TH><TH>백신접종여부</TH>";

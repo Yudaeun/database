@@ -1,53 +1,25 @@
 <?php
-
-include("database_connection.php");
-
-$msg = '';
-
-if(isset($_POST["login"]))
-{
-if(empty($_POST["id"]) || empty($_POST["pwd"]))
-{
-$msg = '<label>빈칸을 채워주세요</label>';
-}
-else
-{
-$query = "select * from logintbl where id = :id";
-$statment = $connect ->prepare($query);
-$statment -> execute(
-array('id' => $_POST["id"])
-);
-$count = $statment -> rowCount();
-
-if($count > 0 )
-{
-$result =$statment ->fetchAll();
-foreach($result as $row)
-{
-if(password_verify($_POST["pwd"],$row["pwd"]))
-{
-$_SESSION['id'] = $row['id'];
-$_SESSION['pwd'] = $row['pwd'];
-header("location:main.html");
-}else
-{
-$msg = '<label>잘못된 비밀번호 입니다</label>';
-}
-
-}
-}
-else
-{
-$msg = '<label>잘못된 아이디 입니다</label>';
-}
+		$con=mysqli_connect("localhost","root","dbspffldks5","govDB") or die("MySQL 접속 실패 !!");
+		$msg = '';
+      //<!--php부분 form에 입력한 내용을 데이터베이스와 비교해서 로그인 여부를 알려준다.-->
+      if(isset($_POST['admid'])&&isset($_POST['pwd'])){//post방식으로 데이터가 보내졌는지?
+        $username=$_POST['admid'];//post방식으로 보낸 데이터를 username이라는 변수에 넣는다.
+        $userpw=$_POST['pwd'];//post방식으로 보낸 데이터를 userpw라는 변수에 넣는다.
+        
+        //sql문을 sql변수에 저장해놓는다.
+        $sql="SELECT * FROM logintbl WHERE admid='$username'&&pwd='$userpw'";
+        if($result=mysqli_fetch_array(mysqli_query($con,$sql))){//쿼리문을 실행해서 결과가 있으면 로그인 성공
+  
+          header("location:main.html");
+		  
+        }
+        else{//쿼리문의 결과가 없으면 로그인 fail을 출력한다.
+          $msg = '<label>로그인 실패</label>';
 
 
-}
-
-}
-
-?>
-
+        }
+      }
+    ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -73,7 +45,7 @@ $msg = '<label>잘못된 아이디 입니다</label>';
 <span class="text-danger"><?php echo $msg; ?></span>
 <div class="form-group">
 <label>id</label>
-<input type="text" name="id" id="id" class="form-control" />
+<input type="text" name="admid" id="admid" class="form-control" />
 </div>
 
 <div class="form-group">

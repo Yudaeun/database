@@ -138,7 +138,7 @@
 		  <?php
 	$con=mysqli_connect("localhost","root","dbspffldks5","govDB") or die("MySQL 접속 실패 !!");
 	
-	$sql="SELECT bed_num FROM hospitaltbl ";
+	$sql="SELECT SUM(bed_num) as bs FROM hospitaltbl ";
 	
 	$ret=mysqli_query($con,$sql);
 
@@ -154,7 +154,7 @@
 	
 	$row=mysqli_fetch_array($ret);
 
-		echo $row['bed_num'];
+		echo $row['bs'];
 	?></text></svg>
 
         </div>
@@ -174,7 +174,7 @@
 	<?php
 	$con=mysqli_connect("localhost","root","dbspffldks5","govDB") or die("MySQL 접속 실패 !!");
 
-	$sql2="SELECT available_beds FROM hospitaltbl";
+	$sql2="SELECT SUM(available_beds) as ab FROM hospitaltbl;";
 
 	$ret2=mysqli_query($con,$sql2);
 
@@ -188,7 +188,7 @@
 		exit();
 	}
 		$row1=mysqli_fetch_array($ret2);
-	    echo  $row1['available_beds'];
+	    echo  $row1['ab'];
 
 	?></text></svg>
 
@@ -210,7 +210,7 @@
 	$con=mysqli_connect("localhost","root","dbspffldks5","govDB") or die("MySQL 접속 실패 !!");
 	
 
-	$sql3="SELECT abs(available_beds/bed_num)*100 as per FROM hospitaltbl";
+	$sql3="SELECT truncate(abs(sum(available_beds)/sum(bed_num)),2)*100 as per FROM hospitaltbl;";
 	
 	$ret=mysqli_query($con,$sql3);
 	if($ret){

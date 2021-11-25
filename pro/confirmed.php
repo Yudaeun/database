@@ -108,16 +108,26 @@
       <h1 class="display-4 fst-italic">국내 발생 현황</h1>
 	  <div>
 	<form method="POST">
-		<label>From: </label><input type="date" name="day0">
-		<input type="submit" value="Get Data" name="submit">
+	<br><br>
+		<h3><label>조회할 날짜 입력:　 </label><input type="date" name="day0">
+		<input type="submit" value="입력" name="submit"></h3>
 	</form>
 </div>
+<?php
+if (isset($_POST['submit'])){
+				$con=mysqli_connect("localhost","root","dbspffldks5","test") or die("MYSQL 접속 실패 !!");
+
+				$from=date('Y-m-d',strtotime($_POST['day0']));
+				echo "입력한 날짜: ";
+				echo "".$_POST['day0']."";
+}
+
+?>
 
 </div>
 
 </body>
 
-</html>
 
 	  
 	  <!--<br><FORM METHOD="get" ACTION="new_confirmed.php">
@@ -126,40 +136,197 @@
 	</FORM>-->
 
     </div>
-  </div>
-
-    <h2>Data Between Selected Dates</h2>
-<div>
-	<table border="1">
-		<thead>
-			<th>일일확진자 수</th>
+    <h2>확진자 통계 현황</h2>
 	
-		</thead>
-		<tbody>
-		<?php
+<div class="row mb-3">
+    <div class="col-md-4">
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+          <strong class="d-inline-block mb-2 text-primary">Total</strong>
+          <h3 class="mb-0">일일 확진자수(일일 입원자수)</h3>
+          <p class="card-text mb-auto"></p>
+
+        </div>
+        <div class="col-auto d-none d-lg-block">
+          <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">
+		  <?php
 			if (isset($_POST['submit'])){
 				$con=mysqli_connect("localhost","root","dbspffldks5","test") or die("MYSQL 접속 실패 !!");
-			$sql="SELECT * FROM nationTbl";
-			$ret=mysqli_query($con,$sql);
+
 				$from=date('Y-m-d',strtotime($_POST['day0']));
 			
-				$oquery=$con->query("select * from date WHERE day='".$_POST['day0']."'");
+				//$oquery=$con->query("select * from date WHERE day='".$_POST['day0']."'");
 				$mung=$con->query
 				("SELECT DATE_FORMAT(day, '%Y%m%d')AS date, 
-				count(*) AS cnt FROM date WHERE day='".$_POST['day0']."'");//입력받은 날짜 기준으로 누적 확진자수(확진자tbl에서 입원일을 가져와야함)
-				while($orow = $mung->fetch_array()){
-					?>
-					<tr>
-						<td><?php echo $orow['cnt']?></td>
+				count(*) AS cnt FROM date WHERE day='".$_POST['day0']."'");//입력받은 날짜 기준으로 일일 확진자수(확진자tbl에서 입원일을 가져와야함)
+				$orow = $mung->fetch_array();
 					
-			
-					</tr>
-					<?php 
+					
+					echo $orow['cnt'], "명";			
+				
 				}
-			}
-		?>
-		</tbody>
-	</table>
+			
+		?></text></svg>
+
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+          <strong class="d-inline-block mb-2 text-success">Total</strong>
+          <h3 class="mb-0">누적 확진자수</h3>
+          <p class="mb-auto"></p>
+   
+        </div>
+        <div class="col-auto d-none d-lg-block">
+          <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">
+	  <?php
+			
+if (isset($_POST['submit'])){
+				$con=mysqli_connect("localhost","root","dbspffldks5","test") or die("MYSQL 접속 실패 !!");
+
+				$from=date('Y-m-d',strtotime($_POST['day0']));
+				//$oquery=$con->query("select * from date WHERE day='".$_POST['day0']."'");
+				$query1=$con->query
+				("SELECT DATE_FORMAT(day, '%Y%m%d') AS date1, count(*) as total FROM date 
+				WHERE DATE(day) <= '".$_POST['day0']."'");//입력받은 날짜 기준으로 누적 확진자수(확진자tbl에서 입원일을 가져와야함)
+				
+				$row1 = $query1->fetch_array();
+					echo $row1['total'],"명";			
+				
+}
+			
+		?></text></svg>
+
+        </div>
+      </div>
+    </div>
+	    <div class="col-md-4">
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+          <strong class="d-inline-block mb-2 text-success">Total</strong>
+          <h3 class="mb-0">누적 사망자수</h3>
+          <p class="mb-auto"></p>
+          
+        </div>
+        <div class="col-auto d-none d-lg-block">
+          <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">
+		  <?php
+			
+if (isset($_POST['submit'])){
+				$con=mysqli_connect("localhost","root","dbspffldks5","test") or die("MYSQL 접속 실패 !!");
+
+				$from=date('Y-m-d',strtotime($_POST['day0']));
+				//$oquery=$con->query("select * from date WHERE day='".$_POST['day0']."'");
+				$query2=$con->query
+				("SELECT DATE_FORMAT(die, '%Y%m%d') AS date2, count(*) as die_total FROM date 
+				WHERE DATE(die) <= '".$_POST['day0']."'");//입력받은 날짜 기준으로 누적 사망자수(확진자tbl에서 사망일을 가져와야함)
+				
+				$row2 = $query2->fetch_array();
+					echo $row2['die_total'],"명";			
+				
+}			
+		?></text></svg>
+
+        </div>
+      </div>
+    </div>
+	    <div class="col-md-4">
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+          <strong class="d-inline-block mb-2 text-success">Total</strong>
+          <h3 class="mb-0">일일 사망자수</h3>
+          <p class="mb-auto"></p>
+          
+        </div>
+        <div class="col-auto d-none d-lg-block">
+          <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">
+		  <?php
+			
+if (isset($_POST['submit'])){
+				$con=mysqli_connect("localhost","root","dbspffldks5","test") or die("MYSQL 접속 실패 !!");
+
+				$from=date('Y-m-d',strtotime($_POST['day0']));
+				//$oquery=$con->query("select * from date WHERE day='".$_POST['day0']."'");
+				$query2=$con->query
+				("SELECT DATE_FORMAT(die, '%Y%m%d') AS date2, count(*) as die_total FROM date 
+				WHERE DATE(die)= '".$_POST['day0']."'");//입력받은 날짜 기준으로 일일 사망자수(확진자tbl에서 사망일을 가져와야함)
+				
+				$row2 = $query2->fetch_array();
+					echo $row2['die_total'],"명";			
+				
+}			
+		?></text></svg>
+
+        </div>
+      </div>
+    </div>
+	    <div class="col-md-4">
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+          <strong class="d-inline-block mb-2 text-success">Total</strong>
+          <h3 class="mb-0">인구 100명당 확진 비율</h3>
+          <p class="mb-auto"></p>
+          
+        </div>
+        <div class="col-auto d-none d-lg-block">
+          <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">
+		  <?php
+			
+if (isset($_POST['submit'])){
+				$con=mysqli_connect("localhost","root","dbspffldks5","test") or die("MYSQL 접속 실패 !!");
+
+				$from=date('Y-m-d',strtotime($_POST['day0']));
+				//$oquery=$con->query("select * from date WHERE day='".$_POST['day0']."'");
+				$query2=$con->query
+				("select truncate((count(case when con='Y' then 1 end)/count(*))*100,2) as res
+from date left outer join nationtbl on date.ssn=nationtbl.ssn
+where DATE(date.day)<='".$_POST['day0']."'");//입력받은 날짜 기준으로 인구 100명당 확진자비율(확진자tbl이랑 국민 tbl조인해서 확진여부 Y인 사람 count/전체사람count)
+				
+				$row2 = $query2->fetch_array();
+					echo $row2['res'],"%";			
+				
+}			
+		?></text></svg>
+
+        </div>
+      </div>
+    </div>
+	    <div class="col-md-4">
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+          <strong class="d-inline-block mb-2 text-success">Total</strong>
+          <h3 class="mb-0">확진자 중 남녀 비율</h3>
+          <p class="mb-auto"></p>
+          
+        </div>
+        <div class="col-auto d-none d-lg-block">
+          <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">
+		  <?php
+			
+if (isset($_POST['submit'])){
+				$con=mysqli_connect("localhost","root","dbspffldks5","test") or die("MYSQL 접속 실패 !!");
+
+				$from=date('Y-m-d',strtotime($_POST['day0']));
+				//$oquery=$con->query("select * from date WHERE day='".$_POST['day0']."'");
+				$query2=$con->query
+				("SELECT DATE_FORMAT(die, '%Y%m%d') AS date2, count(*) as die_total FROM date 
+				WHERE DATE(die) <= '".$_POST['day0']."'");//입력받은 날짜 기준으로 누적 사망자수(확진자tbl에서 사망일을 가져와야함)
+				
+				$row2 = $query2->fetch_array();
+					echo $row2['die_total'],"명";			
+				
+}			
+		?></text></svg>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
   <br><br>
 
 </body></html>

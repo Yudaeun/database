@@ -132,7 +132,7 @@
 <div>
 	<table border="1">
 		<thead>
-			<th>일일확진자 수</th>
+			<th>누적확진자 수</th>
 	
 		</thead>
 		<tbody>

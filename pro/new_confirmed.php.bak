@@ -1,0 +1,73 @@
+<! DOCTYPE html>
+
+<html lang = "kr" >
+
+<head>
+
+<meta charset = "utf-8" >
+
+<title> 키보드와 하루 </title>
+
+</head>
+
+<body>
+
+<?php
+
+$v_testDate = $_POST [ "testDate" ];
+
+print_r( $v_testDate );
+
+print_r( "<br><br>" );
+
+ 
+
+//입력 받은 데이터 값이 null이 아닌 경우
+
+if (! empty ( $v_testDate ))
+
+{
+
+//입력 받은 데이터 값을 데이터 타입으로
+
+$newTestDate = new DateTime( $v_testDate );
+
+//형식을 Y년m월d일 형태로 표시
+
+print_r( $newTestDate ->format( "Y년m월d일" ));
+
+print_r( "<br><br>" );
+
+ 
+
+//요일을 구하기 위해서 w형식으로 받아옴
+
+$dayInt = $newTestDate ->format( "w" );
+
+$day = [ "일" , "월" , "화" , "수" , "목" , "금" , "토" ];
+
+ 
+
+print_r( $dayInt );
+
+print_r( "<br><br>" );
+
+//요일을 구하는 부분
+
+print_r( $day [ $dayInt ]);
+
+}
+
+?>
+
+<form method = "POST" action = "<?php echo $_SERVER [ 'PHP_SELF' ];?>" >
+
+<input type = "date" name = "testDate" value =&lt?php echo $v_testDate ?> >
+
+<input type = "submit" value = "전송" />
+
+</form>
+
+</body>
+
+</html>

@@ -1,4 +1,42 @@
+<?php
+	$con=mysqli_connect("localhost","root","dbspffldks5","govDB") or die("MYSQL 접속 실패 !!");
+	
+	
+	$sql="SELECT * FROM nationtbl WHERE day='".$_GET['day']."'";
+	
+	$ret=mysqli_query($con,$sql);
+	
+	
+	if($ret){
+		$count=mysqli_num_rows($ret);
+		if($count=0){
+			echo $_GET['day']." null"."<br>";
+			echo "<br> <h1><a href='main.html'> <-- main</a></h1>";
+			exit();
+		}	
 
+	}
+	else{
+		echo "데이터 조회 실패!!"."<br>";
+		echo "실패 원인:".mysqli_error($con);
+		echo "<h1><br> <a href='main.html'> <--main</a></h1> ";
+		exit();
+	}
+	$row=mysqli_fetch_array($ret);
+	$ssn=$row["ssn"];
+	$name=$row["name"];
+	$gender=$row["gender"];
+	$address=$row["address"];
+	$hic=$row["hic"];
+	$phone=$row["phone"];
+	$dod=$row["dod"];
+	$confirmed=$row["confirmed"];
+	$selfquaran=$row["selfquaran"];
+	$vaccin=$row["vaccin"];
+	
+	
+	?>
+	
 	<html>
 <HAED>
 <META http-equiv="content-type" content="text/html; charset=utf-8">
@@ -14,7 +52,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
- <title>국민정보관리시스템-병원</title>
+ <title>확진자 현황</title>
  <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Stylish&display=swap" rel="stylesheet">
@@ -86,14 +124,7 @@
 
   <div class="nav-scroller py-1 mb-2">
     <nav class="nav d-flex justify-content-between">
-      <button type="button" class="btn btn-primary active" id="btn"
-	onclick="document.location.href='ynhos.html'">
-	경북대병원
-	</button>
-        <button type="button" class="btn btn-primary active" id="btn"
-	onclick="document.location.href='ynhos.html'">영남대병원</button>
-        <button type="button" class="btn btn-primary active" id="btn"
-	onclick="document.location.href='ynhos.html'">대구병원</button>
+
         <button type="button" class="btn btn-primary active" id="btn"
 	onclick="document.location.href='main.html'">Main</button>
 
@@ -103,23 +134,18 @@
 
 <main class="container">
   <div class="p-4 p-md-5 mb-4 text-white rounded bg-dark">
-    <div class="col-md-6 px-0">
+    <div class="col-md-9 px-0">
 	 <div class="image">
     <img src="https://yumc.ac.kr:8443/data/bbs/news2/bbs_news2_202111100426277840.jpg" alt="사막">
     <div class="text">
-      <h1>코로나-19 병상 보유 병원</h1>
-  <h3>영남대학교 병원</h3>
-    <h3>경북대학교 병원</h3>
-  <h3>대구 병원</h3>
+      <h1>코로나바이러스감염증-19 국내 발생현황</h1>
+
 
     </div>
   </div><br>
-      <h1 class="display-4 fst-italic">확진환자 치료 및 지원</h1>
-	  
-      <p class="lead my-3">한국 정부는 환자를 중증도에 따라 분류하고 중증환자는 입원 치료를 우선 제공하고, 입원이 필요하지 않은 확진자에 대해서는 생활치료센터에서 의료서비스 지원 및 증상 모니터링 등을 진행하고 있습니다. 먼저, 보건소에서 확진자를 확인하고, 시도별로 구성된 환자관리반에서 확진자 중증도를 3가지(경증·중등증·중증)로 분류합니다.
+      <h1 class="display-4 fst-italic">국내 발생 현황</h1>
+	 
 
-입원 치료가 필요한 중등증ㆍ중증 환자는 환자 상태에 따라 감염병전담병원 병상, 중증환자 전담치료병상 등을 배정받아 치료를 받게 됩니다.</p>
-      <p class="lead mb-0"><a href="#" class="text-white fw-bold">Continue reading...</a></p>
     </div>
   </div>
 

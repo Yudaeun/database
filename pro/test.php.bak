@@ -16,7 +16,19 @@
 			$con=mysqli_connect("localhost","root","dbspffldks5","test") or die("MYSQL 접속 실패 !!");
 			$sql="SELECT * FROM nationTbl";
 			$ret=mysqli_query($con,$sql);
-
+			//MySQLi Procedural
+			//$query=mysqli_query($conn,"select * from `login`");
+			//while($row=mysqli_fetch_array($query)){
+			/*	?>
+				<tr>
+					<td><?php echo $row['logid']; ?></td>
+					<td><?php echo $row['username']; ?></td>
+					<td><?php echo $row['login_date']; ?></td>
+				</tr>
+				<?php */
+			//}
+ 
+			//MySQLi Object-oriented
 			$query=$con->query("select * from `date`");
 			while($row = $query->fetch_array()) {
 				?>
@@ -52,6 +64,19 @@
 			$ret=mysqli_query($con,$sql);
 				$from=date('Y-m-d',strtotime($_POST['day0']));
 			
+				//MySQLi Procedural
+				//$oquery=mysqli_query($conn,"select * from `login` where login_date between '$from' and '$to'");
+				//while($orow=mysqli_fetch_array($oquery)){
+				/*	?>
+					<tr>
+						<td><?php echo $orow['logid']?></td>
+						<td><?php echo $orow['username']?></td>
+						<td><?php echo $orow['login_date']?></td>
+					</tr>
+					<?php */
+				//}
+ 
+				//MySQLi Object-oriented
 				$oquery=$con->query("select * from date WHERE day='".$_POST['day0']."'");
 				while($orow = $oquery->fetch_array()){
 					?>

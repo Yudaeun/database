@@ -119,42 +119,48 @@
       <p class="lead my-3">한국 정부는 환자를 중증도에 따라 분류하고 중증환자는 입원 치료를 우선 제공하고, 입원이 필요하지 않은 확진자에 대해서는 생활치료센터에서 의료서비스 지원 및 증상 모니터링 등을 진행하고 있습니다. 먼저, 보건소에서 확진자를 확인하고, 시도별로 구성된 환자관리반에서 확진자 중증도를 3가지(경증·중등증·중증)로 분류합니다.
 
 입원 치료가 필요한 중등증ㆍ중증 환자는 환자 상태에 따라 감염병전담병원 병상, 중증환자 전담치료병상 등을 배정받아 치료를 받게 됩니다.</p>
-      <p class="lead mb-0"><a href="#" class="text-white fw-bold">Continue reading...</a></p>
+ 	  <div>
+	<form method="POST">
+	<br><br>
+		<h3><label>조회할 날짜 입력:　 </label><input type="date" name="day0">
+		<input type="submit" value="입력" name="submit"></h3>
+	</form>
+</div>
+<?php
+if (isset($_POST['submit'])){
+				$con=mysqli_connect("localhost","root","dbspffldks5","corona") or die("MYSQL 접속 실패 !!");
+
+				$from=date('Y-m-d',strtotime($_POST['day0']));
+				echo "입력한 날짜: ";
+				echo "".$_POST['day0']."";
+}
+
+?>
     </div>
   </div>
-
+    <h2>병원 통계 현황</h2>
   <div class="row mb-3">
     <div class="col-md-4">
       <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
         <div class="col p-4 d-flex flex-column position-static">
           <strong class="d-inline-block mb-2 text-primary">Total</strong>
-          <h3 class="mb-0">보유병상 현황</h3>
-          <div class="mb-1 text-muted">5월25일</div>
+          <h3 class="mb-0">총 보유병상 현황</h3>
           <p class="card-text mb-auto"></p>
 
         </div>
         <div class="col-auto d-none d-lg-block">
           <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">
 		  <?php
-	$con=mysqli_connect("localhost","root","dbspffldks5","govDB") or die("MySQL 접속 실패 !!");
+	$con=mysqli_connect("localhost","root","dbspffldks5","corona") or die("MySQL 접속 실패 !!");
 	
-	$sql="SELECT SUM(bed_num) as bs FROM hospitaltbl ";
+	$sql="SELECT SUM(sickbed) as bs FROM hospitaltbl";
 	
-	$ret=mysqli_query($con,$sql);
-
-	if($ret){
-		$count=mysqli_num_rows($ret);
-	}
-	else{
-		echo "데이터 조회 실패!!"."<br>";
-		echo "실패 원인 :".mysqli_error($con);
-		exit();
-	}
-	
-	
+	$ret=mysqli_query($con,$sql);	
 	$row=mysqli_fetch_array($ret);
 
+
 		echo $row['bs'];
+
 	?></text></svg>
 
         </div>
@@ -165,32 +171,28 @@
         <div class="col p-4 d-flex flex-column position-static">
           <strong class="d-inline-block mb-2 text-success">Total</strong>
           <h3 class="mb-0">가용병상 현황</h3>
-          <div class="mb-1 text-muted">5월25일</div>
           <p class="mb-auto"></p>
    
         </div>
         <div class="col-auto d-none d-lg-block">
           <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">
-	<?php
-	$con=mysqli_connect("localhost","root","dbspffldks5","govDB") or die("MySQL 접속 실패 !!");
+<?php
+			if (isset($_POST['submit'])){
+				$con=mysqli_connect("localhost","root","dbspffldks5","corona") or die("MYSQL 접속 실패 !!");
 
-	$sql2="SELECT SUM(available_beds) as ab FROM hospitaltbl;";
-
-	$ret2=mysqli_query($con,$sql2);
-
-
-		if($ret2){
-		$count=mysqli_num_rows($ret2);
-	}
-	else{
-		echo "데이터 조회 실패!!"."<br>";
-		echo "실패 원인 :".mysqli_error($con);
-		exit();
-	}
-		$row1=mysqli_fetch_array($ret2);
-	    echo  $row1['ab'];
-
-	?></text></svg>
+				$from=date('Y-m-d',strtotime($_POST['day0']));
+			
+				//$oquery=$con->query("select * from date WHERE day='".$_POST['day0']."'");
+				$mung=$con->query
+				("select count(wardID) as cnt from wardtbl where hospitalization_date<='".$_POST['day0']."'");//입력받은 날짜 기준으로 현재 가용병상
+				$orow = $mung->fetch_array();
+					
+					
+					echo $orow['cnt'];			
+				
+				}
+			
+		?></text></svg>
 
         </div>
       </div>
@@ -200,39 +202,139 @@
         <div class="col p-4 d-flex flex-column position-static">
           <strong class="d-inline-block mb-2 text-success">Total</strong>
           <h3 class="mb-0">가동률</h3>
-          <div class="mb-1 text-muted">5월25일</div>
           <p class="mb-auto"></p>
           
         </div>
         <div class="col-auto d-none d-lg-block">
           <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">
 		  <?php
-	$con=mysqli_connect("localhost","root","dbspffldks5","govDB") or die("MySQL 접속 실패 !!");
-	
+			if (isset($_POST['submit'])){
+				$con=mysqli_connect("localhost","root","dbspffldks5","corona") or die("MYSQL 접속 실패 !!");
 
-	$sql3="SELECT truncate(abs(sum(available_beds)/sum(bed_num)),2)*100 as per FROM hospitaltbl;";
-	
-	$ret=mysqli_query($con,$sql3);
-	if($ret){
-		$count=mysqli_num_rows($ret);
-	}
-	else{
-		echo "데이터 조회 실패!!"."<br>";
-		echo "실패 원인 :".mysqli_error($con);
-		exit();
-	}
-	
-	$row=mysqli_fetch_array($ret);
-		echo  $row['per'],"%";
-
-	?></text></svg>
+				$from=date('Y-m-d',strtotime($_POST['day0']));
+			
+				//$oquery=$con->query("select * from date WHERE day='".$_POST['day0']."'");
+				$mung=$con->query
+				("SELECT truncate(count(wardID)/90,2)*100 as per 
+FROM wardtbl
+where hospitalization_date<='".$_POST['day0']."' and (discharge_date>='".$_POST['day0']."' or discharge_date is null)");
+				$orow = $mung->fetch_array();
+					
+					
+					echo $orow['per'], "%";
+				
+				}
+			
+		?></text></svg>
 
         </div>
       </div>
     </div>
-  </div>
 
 
+    <div class="col-md-4">
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+          <strong class="d-inline-block mb-2 text-primary">Total</strong>
+          <h3 class="mb-0">경북대병원 가동병상</h3>
+          <p class="card-text mb-auto"></p>
+
+        </div>
+        <div class="col-auto d-none d-lg-block">
+          <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">
+		  <?php
+			if (isset($_POST['submit'])){
+				$con=mysqli_connect("localhost","root","dbspffldks5","corona") or die("MYSQL 접속 실패 !!");
+
+				$from=date('Y-m-d',strtotime($_POST['day0']));
+			
+				//$oquery=$con->query("select * from date WHERE day='".$_POST['day0']."'");
+				$mung=$con->query
+				("SELECT count(wardID) as y
+from wardtbl
+where hosCRN='112-52-45982' and hospitalization_date<='".$_POST['day0']."' and 
+(discharge_date>='".$_POST['day0']."' or discharge_date is null)");
+				$orow = $mung->fetch_array();
+					
+					
+					echo $orow['y'];
+				
+				}
+			
+		?></text></svg>
+
+        </div>
+      </div>
+    </div>
+	    <div class="col-md-4">
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+          <strong class="d-inline-block mb-2 text-primary">Total</strong>
+          <h3 class="mb-0">영남대병원 가동병상</h3>
+          <p class="card-text mb-auto"></p>
+
+        </div>
+        <div class="col-auto d-none d-lg-block">
+          <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">
+		  <?php
+			if (isset($_POST['submit'])){
+				$con=mysqli_connect("localhost","root","dbspffldks5","corona") or die("MYSQL 접속 실패 !!");
+
+				$from=date('Y-m-d',strtotime($_POST['day0']));
+			
+				//$oquery=$con->query("select * from date WHERE day='".$_POST['day0']."'");
+				$mung=$con->query
+				("SELECT count(wardID) as y
+from wardtbl
+where hosCRN='328-09-34183' and hospitalization_date<='".$_POST['day0']."' and 
+(discharge_date>='".$_POST['day0']."' or discharge_date is null)");
+				$orow = $mung->fetch_array();
+					
+					
+					echo $orow['y'];
+				
+				}
+			
+		?></text></svg>
+
+        </div>
+      </div>
+    </div>
+	    <div class="col-md-4">
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+          <strong class="d-inline-block mb-2 text-primary">Total</strong>
+          <h3 class="mb-0">대구병원 가동병상</h3>
+
+          <p class="card-text mb-auto"></p>
+
+        </div>
+        <div class="col-auto d-none d-lg-block">
+          <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">
+		 <?php
+			if (isset($_POST['submit'])){
+				$con=mysqli_connect("localhost","root","dbspffldks5","corona") or die("MYSQL 접속 실패 !!");
+
+				$from=date('Y-m-d',strtotime($_POST['day0']));
+			
+				//$oquery=$con->query("select * from date WHERE day='".$_POST['day0']."'");
+				$mung=$con->query
+				("SELECT count(wardID) as y
+from wardtbl
+where hosCRN='243-48-34791' and hospitalization_date<='".$_POST['day0']."'");
+				$orow = $mung->fetch_array();
+					
+					
+					echo $orow['y'];
+				
+				}
+			
+		?></text></svg>
+
+        </div>
+      </div>
+    </div>
+	</div>
     
   
 

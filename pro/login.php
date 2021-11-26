@@ -1,14 +1,14 @@
 <?php
-		$con=mysqli_connect("localhost","root","dbspffldks5","govDB") or die("MySQL 접속 실패 !!");
+		$con=mysqli_connect("localhost","root","dbspffldks5","corona") or die("MySQL 접속 실패 !!");
 		$msg = '';
       //<!--php부분 form에 입력한 내용을 데이터베이스와 비교해서 로그인 여부를 알려준다.-->
       if(isset($_POST['admid'])&&isset($_POST['pwd'])){//post방식으로 데이터가 보내졌는지?
-        $username=$_POST['admid'];//post방식으로 보낸 데이터를 username이라는 변수에 넣는다.
+        $username=$_POST['admin'];//post방식으로 보낸 데이터를 username이라는 변수에 넣는다.
         $userpw=$_POST['pwd'];//post방식으로 보낸 데이터를 userpw라는 변수에 넣는다.
         
         //sql문을 sql변수에 저장해놓는다.
-        $sql="SELECT * FROM logintbl WHERE admid='$username'&&pwd='$userpw'";
-        if($result=mysqli_fetch_array(mysqli_query($con,$sql))){//쿼리문을 실행해서 결과가 있으면 로그인 성공
+        $sql="SELECT * FROM logintbl WHERE admin='$username'&&pwd='$userpw'";
+        if($result=mysqli_query($con,$sql)){//쿼리문을 실행해서 결과가 있으면 로그인 성공
   
           header("location:main.html");
 		  

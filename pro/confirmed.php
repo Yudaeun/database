@@ -28,7 +28,7 @@
     font-family: 'Stylish', sans-serif;
     }
 	 .wrap {
-                width: 1400px;
+                width: 1800px;
                 margin: auto;
             }
 	 #post-box {
@@ -73,12 +73,13 @@
 
     
     <!-- Custom styles for this template -->
-    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900&amp;display=swap" rel="stylesheet">
+	<div class="wrap">
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900&amp;display=swap" rel="stylesheet"> </div>
     <!-- Custom styles for this template -->
     <link href="blog.css" rel="stylesheet">
   </head>
   <body>
-    
+    <div class="wrap">
 <div class="container">
   <header class="blog-header py-3">
    
@@ -98,9 +99,8 @@
   <div class="p-4 p-md-5 mb-4 text-white rounded bg-dark">
     <div class="col-md-9 px-0">
 	 <div class="image">
-    <img src="https://yumc.ac.kr:8443/data/bbs/news2/bbs_news2_202111100426277840.jpg" alt="사막">
     <div class="text">
-      <h1>코로나바이러스감염증-19 국내 발생현황</h1>
+
 
 
     </div>
@@ -108,6 +108,7 @@
       <h1 class="display-4 fst-italic">국내 발생 현황</h1>
 	  <div>
 	<form method="POST">
+	<br><br>
 	<br><br>
 		<h3><label>조회할 날짜 입력:　 </label><input type="date" name="day0">
 		<input type="submit" value="입력" name="submit"></h3>
@@ -136,7 +137,12 @@ if (isset($_POST['submit'])){
 	</FORM>-->
 
     </div>
-    <h2>확진자 통계 현황</h2>
+    <h1><hr color="black">확진자 통계 현황 		<button type="button" class="btn btn-primary active" id="btn"
+	onclick="document.location.href='ynhos.html'">
+	확진자 전체 조회
+	</button></hr></h1>
+	<hr color="black"></hr>
+
 	
 <div class="row mb-3">
     <div class="col-md-4">
@@ -148,7 +154,7 @@ if (isset($_POST['submit'])){
 
         </div>
         <div class="col-auto d-none d-lg-block">
-          <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">
+          <svg class="bd-placeholder-img" width="300" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text font-size="90" x="50%" y="50%" fill="#eceeef" dy=".3em">
 		  <?php
 			if (isset($_POST['submit'])){
 				$con=mysqli_connect("localhost","root","dbspffldks5","corona") or die("MYSQL 접속 실패 !!");
@@ -175,12 +181,12 @@ if (isset($_POST['submit'])){
       <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
         <div class="col p-4 d-flex flex-column position-static">
           <strong class="d-inline-block mb-2 text-success">Total</strong>
-          <h3 class="mb-0">누적 확진자수</h3>
+          <h2 class="mb-0">누적 확진자수</h2>
           <p class="mb-auto"></p>
    
         </div>
         <div class="col-auto d-none d-lg-block">
-          <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">
+          <svg class="bd-placeholder-img" width="300" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text font-size="90" x="50%" y="50%" fill="#eceeef" dy=".3em">
 	  <?php
 			
 if (isset($_POST['submit'])){
@@ -206,12 +212,12 @@ if (isset($_POST['submit'])){
       <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
         <div class="col p-4 d-flex flex-column position-static">
           <strong class="d-inline-block mb-2 text-success">Total</strong>
-          <h3 class="mb-0">누적 사망자수</h3>
+          <h2 class="mb-0">누적 사망자수</h2>
           <p class="mb-auto"></p>
           
         </div>
         <div class="col-auto d-none d-lg-block">
-          <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">
+          <svg class="bd-placeholder-img" width="300" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text font-size="90" x="50%" y="50%" fill="#eceeef" dy=".3em">
 		  <?php
 			
 if (isset($_POST['submit'])){
@@ -236,12 +242,12 @@ if (isset($_POST['submit'])){
       <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
         <div class="col p-4 d-flex flex-column position-static">
           <strong class="d-inline-block mb-2 text-success">Total</strong>
-          <h3 class="mb-0">일일 사망자수</h3>
+          <h2 class="mb-0">일일 사망자수</h2>
           <p class="mb-auto"></p>
           
         </div>
         <div class="col-auto d-none d-lg-block">
-          <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">
+          <svg class="bd-placeholder-img" width="300" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text font-size="90" x="50%" y="50%" fill="#eceeef" dy=".3em">
 		  <?php
 			
 if (isset($_POST['submit'])){
@@ -266,12 +272,12 @@ if (isset($_POST['submit'])){
       <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
         <div class="col p-4 d-flex flex-column position-static">
           <strong class="d-inline-block mb-2 text-success">Total</strong>
-          <h3 class="mb-0">인구 100명당 확진 비율</h3>
+          <h2 class="mb-0">인구 100명당 확진 비율</h2>
           <p class="mb-auto"></p>
           
         </div>
         <div class="col-auto d-none d-lg-block">
-          <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">
+          <svg class="bd-placeholder-img" width="300" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text font-size="90" x="50%" y="50%" fill="#eceeef" dy=".3em">
 		  <?php
 			
 if (isset($_POST['submit'])){
@@ -298,12 +304,12 @@ WHERE PB.confirmed='Y' and confirmed_day <= '".$_POST['day0']."')/(SELECT count(
       <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
         <div class="col p-4 d-flex flex-column position-static">
           <strong class="d-inline-block mb-2 text-success">Total</strong>
-          <h3 class="mb-0">확진자 중 남녀 누적 현황</h3>
+          <h2 class="mb-0">확진자 중 남녀 누적 현황</h2>
           <p class="mb-auto"></p>
           
         </div>
         <div class="col-auto d-none d-lg-block">
-          <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">
+          <svg class="bd-placeholder-img" width="300" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text font-size="30" x="50%" y="50%" fill="#eceeef" dy=".3em">
 		  <?php
 			
 if (isset($_POST['submit'])){
@@ -317,7 +323,7 @@ if (isset($_POST['submit'])){
 FROM confirmedtbl CF
 INNER JOIN publictbl PB
 ON CF.cfSSN = PB.SSN
-WHERE CF.confirmed_day = '".$_POST['day0']."'");//입력받은 날짜 기준으로 인구 100명당 확진자비율(확진자tbl이랑 국민 tbl조인해서 확진여부 Y인 사람 count/전체사람count)
+WHERE CF.confirmed_day <= '".$_POST['day0']."'");//입력받은 날짜 기준으로 인구 100명당 확진자비율(확진자tbl이랑 국민 tbl조인해서 확진여부 Y인 사람 count/전체사람count)
 				
 				$row2 = $query2->fetch_array();
 					echo "남성: ", $row2['남성']," 명 ";	
@@ -334,5 +340,5 @@ WHERE CF.confirmed_day = '".$_POST['day0']."'");//입력받은 날짜 기준으�
 
 
   <br><br>
-
+</div>
 </body></html>

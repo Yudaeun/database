@@ -88,12 +88,9 @@
     <nav class="nav d-flex justify-content-between">
       <button type="button" class="btn btn-primary active" id="btn"
 	onclick="document.location.href='ynhos.html'">
-	경북대병원
+	병원으로 바로가기
 	</button>
-        <button type="button" class="btn btn-primary active" id="btn"
-	onclick="document.location.href='ynhos.html'">영남대병원</button>
-        <button type="button" class="btn btn-primary active" id="btn"
-	onclick="document.location.href='ynhos.html'">대구병원</button>
+
         <button type="button" class="btn btn-primary active" id="btn"
 	onclick="document.location.href='main.html'">Main</button>
 
@@ -138,7 +135,11 @@ if (isset($_POST['submit'])){
 ?>
     </div>
   </div>
-    <h2>병원 통계 현황</h2>
+  <hr color="black"></hr>
+    <h1>병원 통계 현황 		<button type="button" class="btn btn-primary active" id="btn"
+	onclick="document.location.href='ynhos.html'">
+	병원 조회
+	</button><hr color="black"></hr> </h1>
   <div class="row mb-3">
     <div class="col-md-4">
       <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
@@ -149,8 +150,7 @@ if (isset($_POST['submit'])){
 
         </div>
         <div class="col-auto d-none d-lg-block">
-          <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">
-		  <?php
+ <svg class="bd-placeholder-img" width="300" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text font-size="90" x="50%" y="50%" fill="#eceeef" dy=".3em">		  <?php
 	$con=mysqli_connect("localhost","root","dbspffldks5","corona") or die("MySQL 접속 실패 !!");
 	
 	$sql="SELECT SUM(sickbed) as bs FROM hospitaltbl";
@@ -175,8 +175,7 @@ if (isset($_POST['submit'])){
    
         </div>
         <div class="col-auto d-none d-lg-block">
-          <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">
-<?php
+ <svg class="bd-placeholder-img" width="300" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text font-size="90" x="50%" y="50%" fill="#eceeef" dy=".3em"><?php
 			if (isset($_POST['submit'])){
 				$con=mysqli_connect("localhost","root","dbspffldks5","corona") or die("MYSQL 접속 실패 !!");
 
@@ -206,8 +205,7 @@ if (isset($_POST['submit'])){
           
         </div>
         <div class="col-auto d-none d-lg-block">
-          <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">
-		  <?php
+ <svg class="bd-placeholder-img" width="300" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text font-size="90" x="50%" y="50%" fill="#eceeef" dy=".3em">		  <?php
 			if (isset($_POST['submit'])){
 				$con=mysqli_connect("localhost","root","dbspffldks5","corona") or die("MYSQL 접속 실패 !!");
 
@@ -241,8 +239,7 @@ where hospitalization_date<='".$_POST['day0']."' and (discharge_date>='".$_POST[
 
         </div>
         <div class="col-auto d-none d-lg-block">
-          <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">
-		  <?php
+ <svg class="bd-placeholder-img" width="300" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text font-size="90" x="50%" y="50%" fill="#eceeef" dy=".3em">		  <?php
 			if (isset($_POST['submit'])){
 				$con=mysqli_connect("localhost","root","dbspffldks5","corona") or die("MYSQL 접속 실패 !!");
 
@@ -275,8 +272,7 @@ where hosCRN='112-52-45982' and hospitalization_date<='".$_POST['day0']."' and
 
         </div>
         <div class="col-auto d-none d-lg-block">
-          <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">
-		  <?php
+ <svg class="bd-placeholder-img" width="300" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text font-size="90" x="50%" y="50%" fill="#eceeef" dy=".3em">		  <?php
 			if (isset($_POST['submit'])){
 				$con=mysqli_connect("localhost","root","dbspffldks5","corona") or die("MYSQL 접속 실패 !!");
 
@@ -310,8 +306,7 @@ where hosCRN='328-09-34183' and hospitalization_date<='".$_POST['day0']."' and
 
         </div>
         <div class="col-auto d-none d-lg-block">
-          <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">
-		 <?php
+ <svg class="bd-placeholder-img" width="300" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text font-size="90" x="50%" y="50%" fill="#eceeef" dy=".3em">		 <?php
 			if (isset($_POST['submit'])){
 				$con=mysqli_connect("localhost","root","dbspffldks5","corona") or die("MYSQL 접속 실패 !!");
 
@@ -336,6 +331,6 @@ where hosCRN='243-48-34791' and hospitalization_date<='".$_POST['day0']."'");
     </div>
 	</div>
     
-  
+  <br><br><br>
 
 </body></html>

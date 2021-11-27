@@ -98,14 +98,13 @@
   <div class="p-4 p-md-5 mb-4 text-white rounded bg-dark">
     <div class="col-md-9 px-0">
 	 <div class="image">
-    <img src="https://yumc.ac.kr:8443/data/bbs/news2/bbs_news2_202111100426277840.jpg" alt="사막">
     <div class="text">
-      <h1>코로나바이러스감염증-19 관련 지원 정책</h1>
+      
 
 
     </div>
   </div><br>
-      <h1 class="display-4 fst-italic">지원 정책 현황</h1>
+      <h1 class="display-4 fst-italic">코로나바이러스감염증-19 관련 지원 정책 현황</h1>
 
 	  <div>
 	<form method="POST">
@@ -136,8 +135,15 @@ if (isset($_POST['submit'])){
 	<INPUT TYPE="submit" VALUE="입력">
 	</FORM>-->
 
-    </div>
-    <h2>지원 정책 통계 현황</h2>
+    </div><br>
+	<hr color="black"></hr>
+    <h1>지원 정책 통계 현황 		<button type="button" class="btn btn-primary active" id="btn"
+	onclick="document.location.href='ynhos.html'">
+	지원 정책
+	</button> 		<button type="button" class="btn btn-primary active" id="btn"
+	onclick="document.location.href='ynhos.html'">
+	지원 받은 사람 조회
+	</button><hr color="black"></hr></h1><br><br>
 	
 <div class="row mb-3">
     <div class="col-md-4">
@@ -149,8 +155,8 @@ if (isset($_POST['submit'])){
 
         </div>
         <div class="col-auto d-none d-lg-block">
-          <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">
-		  <?php
+ <svg class="bd-placeholder-img" width="300" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#A1C5D0"></rect><text font-size="50" x="50%" y="50%" fill="#030303" dy=".3em">		
+ <?php
 			$con=mysqli_connect("localhost","root","dbspffldks5","corona") or die("MySQL 접속 실패 !!");
 				$mung=$con->query
 				("Select sum(budget) as cnt from aidtbl;");
@@ -175,7 +181,7 @@ if (isset($_POST['submit'])){
    
         </div>
         <div class="col-auto d-none d-lg-block">
-          <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">
+ <svg class="bd-placeholder-img" width="300" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#A1C5D0"></rect><text font-size="50" x="50%" y="50%" fill="#030303" dy=".3em">		
 	  <?php
 			
 if (isset($_POST['submit'])){
@@ -205,7 +211,7 @@ if (isset($_POST['submit'])){
           
         </div>
         <div class="col-auto d-none d-lg-block">
-          <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">
+ <svg class="bd-placeholder-img" width="300" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#A1C5D0"></rect><text font-size="50" x="50%" y="50%" fill="#030303" dy=".3em">		
 		  <?php
 			
 if (isset($_POST['submit'])){

@@ -12,6 +12,14 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
     </head>
     <body class="sb-nav-fixed">
+			<div class="nav-scroller py-1 mb-2">
+    <nav class="nav d-flex justify-content-between">
+
+        <button type="button" class="btn btn-primary active" id="btn"
+	onclick="document.location.href='main.html'">Main</button>
+
+    </nav>
+  </div>
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
             
@@ -58,12 +66,12 @@
                             <div class="card-body">
 <table id='datatablesSimple'>
 <?php
-	$con = mysqli_connect("localhost", "root", "21912165", "dump20211126") or die("MySQL 접속 실패 !!");
+            $con=mysqli_connect("localhost","root","21912165", "dump20211129") or die("MYSQL 접속 실패 !!");
 
-	  $sql ="SELECT vaccine.*, publictbl.confirmed FROM vaccine LEFT JOIN publictbl ON vaccine.inoculatorSSN=publictbl.SSN ";
+	  $sql ="SELECT *FROM vaccine ";
  
    $ret = mysqli_query($con, $sql);   
-   echo "<thead><tr><th>vcID</th><th>mcCRN</th><th>order_date</th><th>prod_date</th><th>inoculatorSSN</th><th>disuse</th><th>hosCRN</th><th>confirmed</th></tr></thead><tbody>";
+   echo "<thead><tr><th>vcID</th><th>mcCRN</th><th>order_date</th><th>prod_date</th><th>inoculatorSSN</th><th>disuse</th><th>hosCRN</th><th>inoculation_date</th></tr></thead><tbody>";
  while($row = mysqli_fetch_array($ret)) {
 	  echo "<tr><td>", $row['vcID'], 
 	  "</td><td>", $row['mcCRN'], 
@@ -72,7 +80,7 @@
 	 "</td><td>", $row['inoculatorSSN'], 
 	"</td><td>", $row['disuse'], 
 	"</td><td>", $row['hosCRN'], 
-	"</td><td>", $row['confirmed'], 
+	"</td><td>", $row['inoculation_date'], 
 	
 	
 		   "</td></tr>";

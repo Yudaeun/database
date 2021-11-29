@@ -16,7 +16,7 @@
     <nav class="nav d-flex justify-content-between">
 
         <button type="button" class="btn btn-primary active" id="btn"
-	onclick="document.location.href='main.html'">Main</button>
+	onclick="document.location.href='support.php'">지원 정책 현황</button>
 
     </nav>
   </div>
@@ -66,7 +66,7 @@
                             <div class="card-body">
 <table id='datatablesSimple'>
 <?php
-	$con = mysqli_connect("localhost", "root", "21912165", "dump20211126") or die("MySQL 접속 실패 !!");
+	$con = mysqli_connect("localhost", "root", "21912165", "dump20211129") or die("MySQL 접속 실패 !!");
 
 	  $sql ="SELECT * FROM aidtbl  ";
  

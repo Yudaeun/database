@@ -60,7 +60,7 @@
 <?php
 	$con = mysqli_connect("localhost", "root", "21912165", "dump20211126") or die("MySQL 접속 실패 !!");
 
-	$sql = "SELECT * FROM publictbl";
+	  $sql ="SELECT vaccine.*, publictbl.confirmed FROM vaccine LEFT JOIN publictbl ON vaccine.inoculatorSSN=publictbl.SSN ";
  
    $ret = mysqli_query($con, $sql);   
    echo "<thead><tr><th>vcID</th><th>mcCRN</th><th>order_date</th><th>prod_date</th><th>inoculatorSSN</th><th>disuse</th><th>hosCRN</th><th>confirmed</th></tr></thead><tbody>";

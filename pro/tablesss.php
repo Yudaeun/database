@@ -66,24 +66,25 @@
                             <div class="card-body">
 <table id='datatablesSimple'>
 <?php
-	$con = mysqli_connect("localhost", "root", "21912165", "dump20211126") or die("MySQL 접속 실패 !!");
+	$con = mysqli_connect("localhost", "root", "21912165", "dump20211129") or die("MySQL 접속 실패 !!");
 
 	$sql = "SELECT * FROM publictbl";
  
    $ret = mysqli_query($con, $sql);   
-   echo "<thead><tr><th>name</th><th>SSN</th><th>gender</th><th>address</th><th>phone_number</th><th>license_number</th><th>vaccination</th><th>confirmed</th><th>physicianSSN</th><th>exam_date</th><th>delete</th></tr></thead><tbody>";
+   echo "<thead><tr><th>name</th><th>SSN</th><th>gender</th><th>address</th><th>phone_number</th><th>vaccination</th><th>confirmed</th><th>exam_date</th><th>death_day</th></tr></thead><tbody>";
  while($row = mysqli_fetch_array($ret)) {
 	  echo "<tr><td>", $row['name'], 
 	  "</td><td>", $row['SSN'], 
 	  "</td><td>", $row['gender'], 
 	 "</td><td>", $row['address'], 
 	 "</td><td>", $row['phone_number'], 
-	"</td><td>", $row['license_number'], 
 	"</td><td>", $row['vaccination'], 
 	"</td><td>", $row['confirmed'], 
-	"</td><td>", $row['physicianSSN'], 
 	"</td><td>", $row['exam_date'],
+	"</td><td>", $row['death_day'], 
 	
+	"</td><td>", "<a href='update.php?SSN=", $row['SSN'], "'>수정</a></TD>",
+	"</td><td>", "<a href='delete.php?SSN=", $row['SSN'], "'>삭제</a></TD>";
 		   "</td></tr>";
    }   
   echo "</tbody></table>";	

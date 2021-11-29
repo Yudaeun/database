@@ -1,5 +1,5 @@
 <?php
-   $con=mysqli_connect("localhost", "root", "21912165", "dump20211126") or die("MySQL 접속 실패 !!");
+   $con=mysqli_connect("localhost", "root", "21912165", "dump20211129") or die("MySQL 접속 실패 !!");
 
    $SSN = $_POST["SSN"];
      
@@ -7,9 +7,9 @@
    
    $ret = mysqli_query($con, $sql);
  
-    echo "<h1> 회원 삭제 결과 </h1>";
+    echo "<h1> 정보 삭제 결과 </h1>";
    if($ret) {
-	   echo $SSN." 회원이 성공적으로 삭제됨..";
+	   echo $SSN." 정보가 성공적으로 삭제되었습니다. ";
    }
    else {
 	   echo "데이터 삭제 실패!!!"."<br>";

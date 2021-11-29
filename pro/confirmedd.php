@@ -66,7 +66,7 @@
                             <div class="card-body">
 <table id='datatablesSimple'>
 <?php
-	$con = mysqli_connect("localhost", "root", "21912165", "dump20211126") or die("MySQL 접속 실패 !!");
+	$con = mysqli_connect("localhost", "root", "21912165", "dump20211129") or die("MySQL 접속 실패 !!");
 
 $sql ="SELECT * FROM confirmedtbl ";
  

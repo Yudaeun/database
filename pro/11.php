@@ -37,7 +37,7 @@
    }   
    mysqli_close($con);
    echo "</TABLE>"; 
-      echo "<br> <a href='main.html'> <--home</a> ";
+      echo "<br> <a href='support.php'> <--돌아가기</a> ";
 
 ?>
 

@@ -183,7 +183,7 @@ if (isset($_POST['submit'])){
 			
 				//$oquery=$con->query("select * from date WHERE day='".$_POST['day0']."'");
 				$mung=$con->query
-				("select count(wardID) as cnt from wardtbl where hospitalization_date<='".$_POST['day0']."'");//입력받은 날짜 기준으로 현재 가용병상
+				("select count(wardID) as cnt from hospitalizationtbl where hospitalizaton_day<='".$_POST['day0']."'");//입력받은 날짜 기준으로 현재 가용병상
 				$orow = $mung->fetch_array();
 					
 					
@@ -213,9 +213,9 @@ if (isset($_POST['submit'])){
 			
 				//$oquery=$con->query("select * from date WHERE day='".$_POST['day0']."'");
 				$mung=$con->query
-				("SELECT truncate(count(wardID)/90,2)*100 as per 
-FROM wardtbl
-where hospitalization_date<='".$_POST['day0']."' and (discharge_date>='".$_POST['day0']."' or discharge_date is null)");
+				("SELECT truncate(count(wardID)/76,2)*100 as per 
+FROM hospitalizationtbl
+where hospitalizaton_day<='".$_POST['day0']."' and (discharge_day>='".$_POST['day0']."' or discharge_day is null)");
 				$orow = $mung->fetch_array();
 					
 					
@@ -247,10 +247,10 @@ where hospitalization_date<='".$_POST['day0']."' and (discharge_date>='".$_POST[
 			
 				//$oquery=$con->query("select * from date WHERE day='".$_POST['day0']."'");
 				$mung=$con->query
-				("SELECT count(wardID) as y
-from wardtbl
-where hosCRN='112-52-45982' and hospitalization_date<='".$_POST['day0']."' and 
-(discharge_date>='".$_POST['day0']."' or discharge_date is null)");
+				("SELECT count(*) as y
+from hospitalizationtbl as ht INNER JOIN wardtbl as wt ON wt.wardId=ht.wardID
+where hosCRN='112-52-45982' and hospitalizaton_day<='".$_POST['day0']."' and 
+(discharge_day>='".$_POST['day0']."' or discharge_day is null)");
 				$orow = $mung->fetch_array();
 					
 					
@@ -280,10 +280,10 @@ where hosCRN='112-52-45982' and hospitalization_date<='".$_POST['day0']."' and
 			
 				//$oquery=$con->query("select * from date WHERE day='".$_POST['day0']."'");
 				$mung=$con->query
-				("SELECT count(wardID) as y
-from wardtbl
-where hosCRN='328-09-34183' and hospitalization_date<='".$_POST['day0']."' and 
-(discharge_date>='".$_POST['day0']."' or discharge_date is null)");
+				("SELECT count(*) as y
+from hospitalizationtbl as ht INNER JOIN wardtbl as wt ON wt.wardId=ht.wardID
+where hosCRN='328-09-34183' and hospitalizaton_day<='".$_POST['day0']."' and 
+(discharge_day>='".$_POST['day0']."' or discharge_day is null)");
 				$orow = $mung->fetch_array();
 					
 					
@@ -314,9 +314,10 @@ where hosCRN='328-09-34183' and hospitalization_date<='".$_POST['day0']."' and
 			
 				//$oquery=$con->query("select * from date WHERE day='".$_POST['day0']."'");
 				$mung=$con->query
-				("SELECT count(wardID) as y
-from wardtbl
-where hosCRN='243-48-34791' and hospitalization_date<='".$_POST['day0']."'");
+				("SELECT count(*) as y
+from hospitalizationtbl as ht INNER JOIN wardtbl as wt ON wt.wardId=ht.wardID
+where hosCRN='243-48-34791' and hospitalizaton_day<='".$_POST['day0']."' and 
+(discharge_day>='".$_POST['day0']."' or discharge_day is null)");
 				$orow = $mung->fetch_array();
 					
 					

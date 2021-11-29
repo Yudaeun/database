@@ -12,6 +12,18 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
     </head>
     <body class="sb-nav-fixed">
+	<div class="nav-scroller py-1 mb-2">
+    <nav class="nav d-flex justify-content-between">
+      <button type="button" class="btn btn-primary active" id="btn"
+	onclick="document.location.href='hs_login.php'">
+	병원으로 바로가기
+	</button>
+
+        <button type="button" class="btn btn-primary active" id="btn"
+	onclick="document.location.href='main.html'">Main</button>
+
+    </nav>
+  </div>
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
             
@@ -45,7 +57,7 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">국민 조회</h1>
+                        <h1 class="mt-4">내원 환자 list</h1>
                         <ol class="breadcrumb mb-4">
                             
                             
@@ -58,19 +70,19 @@
                             <div class="card-body">
 <table id='datatablesSimple'>
 <?php
-	$con = mysqli_connect("localhost", "root", "21912165", "dump20211126") or die("MySQL 접속 실패 !!");
+	$con = mysqli_connect("localhost", "root", "21912165", "dump20211129") or die("MySQL 접속 실패 !!");
 
-	  $sql ="SELECT * FROM wardtbl  ";
+	  $sql ="SELECT * FROM hospitalizationtbl  ";
  
    $ret = mysqli_query($con, $sql);   
-   echo "<thead><tr><th>wardID</th><th>hosCRN/th><th>patient_SSN</th><th>hospitalization_date</th><th>discharge_date</th><th>death_day</th></tr></thead><tbody>";
+   echo "<thead><tr><th>hospID</th><th>patientSSN</th><th>wardID</th><th>hospitalizaton_day</th><th>discharge_day</th><th>physicianssn</th></tr></thead><tbody>";
  while($row = mysqli_fetch_array($ret)) {
-	  echo "<tr><td>", $row['wardID'], 
-	  "</td><td>", $row['hosCRN'], 
-	  "</td><td>", $row['patient_SSN'], 
-	 "</td><td>", $row['hospitalization_date'], 
-	 "</td><td>", $row['discharge_date'], 
-	"</td><td>", $row['death_day'], 
+	  echo "<tr><td>", $row['hospID'], 
+	  "</td><td>", $row['patientSSN'], 
+	  "</td><td>", $row['wardID'], 
+	 "</td><td>", $row['hospitalizaton_day'], 
+	 "</td><td>", $row['discharge_day'], 
+	"</td><td>", $row['physicianssn'], 
 	
 		   "</td></tr>";
    }   

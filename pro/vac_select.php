@@ -58,7 +58,7 @@
                             <div class="card-body">
 <table id='datatablesSimple'>
 <?php
-	$con = mysqli_connect("localhost", "root", "21912165", "dump20211126") or die("MySQL 접속 실패 !!");
+            $con=mysqli_connect("localhost","root","21912165", "dump20211129") or die("MYSQL 접속 실패 !!");
 
 	  $sql ="SELECT vaccine.*, publictbl.confirmed FROM vaccine LEFT JOIN publictbl ON vaccine.inoculatorSSN=publictbl.SSN ";
  

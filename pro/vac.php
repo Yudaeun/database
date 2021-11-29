@@ -198,8 +198,8 @@ if (isset($_POST['submit'])){
             $from=date('Y-m-d',strtotime($_POST['day0']));
             //$oquery=$con->query("select * from date WHERE day='".$_POST['day0']."'");
             $query1=$con->query
-            ("SELECT DATE_FORMAT(접종일, '%Y%m%d') AS date1, count(*) as total FROM vaccine 
-				WHERE vaccine.inoculatorSSN IS not null AND DATE(접종일) <= '".$_POST['day0']."'");//입력받은 날짜 기준으로 누적 확진자수(확진자tbl에서 입원일을 가져와야함)
+            ("SELECT DATE_FORMAT(inoculation_date, '%Y%m%d') AS date1, count(*) as total FROM vaccine 
+				WHERE vaccine.inoculatorSSN IS not null AND DATE(inoculation_date) <= '".$_POST['day0']."'");//입력받은 날짜 기준으로 누적 확진자수(확진자tbl에서 입원일을 가져와야함)
 
             
             $row1 = $query1->fetch_array();
@@ -265,7 +265,7 @@ if (isset($_POST['submit'])){
             //$oquery=$con->query("select * from date WHERE day='".$_POST['day0']."'");
             $query1=$con->query
             ("SELECT ((SELECT count(*) FROM vaccine
-WHERE DATE(prod_date) <= '".$_POST['day0']."')-(SELECT count(*) FROM vaccine WHERE DATE(disuse)<='".$_POST['day0']."')-(SELECT count(*) FROM vaccine WHERE inoculatorSSN IS not null AND DATE(접종일)<='".$_POST['day0']."')) as 'res';
+WHERE DATE(prod_date) <= '".$_POST['day0']."')-(SELECT count(*) FROM vaccine WHERE DATE(disuse)<='".$_POST['day0']."')-(SELECT count(*) FROM vaccine WHERE inoculatorSSN IS not null AND DATE(inoculation_date)<='".$_POST['day0']."')) as 'res';
 
 ");//입력받은 날짜 기준으로 누적 확진자수(확진자tbl에서 입원일을 가져와야함)
 
@@ -299,8 +299,8 @@ if (isset($_POST['submit'])){
             $from=date('Y-m-d',strtotime($_POST['day0']));
             //$oquery=$con->query("select * from date WHERE day='".$_POST['day0']."'");
             $query1=$con->query
-            ("SELECT DATE_FORMAT(접종일, '%Y%m%d') AS date1, count(*) as total FROM vaccine 
-				WHERE vaccine.inoculatorSSN IS not null AND DATE(접종일) = '".$_POST['day0']."'");//입력받은 날짜 기준으로 누적 확진자수(확진자tbl에서 입원일을 가져와야함)
+            ("SELECT DATE_FORMAT(inoculation_date, '%Y%m%d') AS date1, count(*) as total FROM vaccine 
+				WHERE vaccine.inoculatorSSN IS not null AND DATE(inoculation_date) = '".$_POST['day0']."'");//입력받은 날짜 기준으로 누적 확진자수(확진자tbl에서 입원일을 가져와야함)
 
             
             $row1 = $query1->fetch_array();
@@ -328,17 +328,16 @@ if (isset($_POST['submit'])){
 if (isset($_POST['submit'])){
             $con=mysqli_connect("localhost","root","21912165", "dump20211129") or die("MYSQL 접속 실패 !!");
 
-            $from=date('Y-m-d',strtotime($_POST['day0']));
-            //$oquery=$con->query("select * from date WHERE day='".$_POST['day0']."'");
-            $query1=$con->query
-            ("SELECT concat(round((SELECT count(SSN) FROM confirmedtbl CF 
+		$from=date('Y-m-d',strtotime($_POST['day0']));
+				//$oquery=$con->query("select * from date WHERE day='".$_POST['day0']."'");
+				$query2=$con->query
+				("SELECT concat(round((SELECT count(SSN) FROM vaccine CF 
 INNER JOIN publictbl PB
-ON CF.cfSSN = PB.SSN
-WHERE PB.vaccination='Y' and 접종날짜<='".$_POST['day0']."')/(SELECT count(*) FROM publictbl)*100,0),'%') as 'res'");//입력받은 날짜 기준으로 일일 접종자수 나중에 다시 계산해야 함
-
-            
-            $row1 = $query1->fetch_array();
-               echo $row1['total'],"명";         
+ON CF.inoculatorSSN = PB.SSN
+WHERE CF.inoculatorSSN IS not null and inoculation_date <= '".$_POST['day0']."')/(SELECT count(*) FROM publictbl)*100,0),'%') as 'res'");//입력받은 날짜 기준으로 인구 100명당 확진자비율(확진자tbl이랑 국민 tbl조인해서 확진여부 Y인 사람 count/전체사람count)
+				
+				$row2 = $query2->fetch_array();
+					echo $row2['res'];		
             
 }
          

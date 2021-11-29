@@ -45,7 +45,7 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">국민 조회</h1>
+                        <h1 class="mt-4">의사 조회</h1>
                         <ol class="breadcrumb mb-4">
                             
                             

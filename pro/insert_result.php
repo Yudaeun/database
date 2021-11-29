@@ -28,5 +28,5 @@
    } 
    mysqli_close($con);
    
-   echo "<br> <a href='main.html'> <--초기 화면</a> ";
+   echo "<br> <a href='main.html'> <--home</a> ";
 ?>

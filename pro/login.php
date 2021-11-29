@@ -1,17 +1,17 @@
 <?php
-            $con=mysqli_connect("localhost","root","21912165", "dump20211129") or die("MYSQL 접속 실패 !!");
-		$msg = '';
+      $con=mysqli_connect("localhost","root","21912165","Dump20211129") or die("MySQL 접속 실패 !!");
+      $msg = '';
       //<!--php부분 form에 입력한 내용을 데이터베이스와 비교해서 로그인 여부를 알려준다.-->
       if(isset($_POST['admid'])&&isset($_POST['pwd'])){//post방식으로 데이터가 보내졌는지?
-        $username=$_POST['admin'];//post방식으로 보낸 데이터를 username이라는 변수에 넣는다.
+        $username=$_POST['admid'];//post방식으로 보낸 데이터를 username이라는 변수에 넣는다.
         $userpw=$_POST['pwd'];//post방식으로 보낸 데이터를 userpw라는 변수에 넣는다.
         
         //sql문을 sql변수에 저장해놓는다.
         $sql="SELECT * FROM logintbl WHERE admin='$username'&&pwd='$userpw'";
-        if($result=mysqli_query($con,$sql)){//쿼리문을 실행해서 결과가 있으면 로그인 성공
+        if($result=mysqli_fetch_array(mysqli_query($con,$sql))){//쿼리문을 실행해서 결과가 있으면 로그인 성공
   
           header("location:main.html");
-		  
+        
         }
         else{//쿼리문의 결과가 없으면 로그인 fail을 출력한다.
           $msg = '<label>로그인 실패</label>';
@@ -43,11 +43,10 @@
 <!-- 로그인 폼 -->
 <form method = "post">
 <span class="text-danger"><?php echo $msg; ?></span>
-<!--
 <div class="form-group">
 <label>id</label>
 <input type="text" name="admid" id="admid" class="form-control" />
-</div>-->
+</div>
 
 <div class="form-group">
 <label>비밀번호</label>

@@ -116,7 +116,7 @@
 </div>
 <?php
 if (isset($_POST['submit'])){
-            $con=mysqli_connect("localhost","root","21912165", "dump20211126") or die("MYSQL 접속 실패 !!");
+            $con=mysqli_connect("localhost","root","21912165", "dump20211129") or die("MYSQL 접속 실패 !!");
 
             $from=date('Y-m-d',strtotime($_POST['day0']));
             echo "입력한 날짜: ";
@@ -157,7 +157,7 @@ if (isset($_POST['submit'])){
           <svg class="bd-placeholder-img" width="300" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text font-size="90" x="50%" y="50%" fill="#eceeef" dy=".3em">
         <?php
          if (isset($_POST['submit'])){
-            $con=mysqli_connect("localhost","root","21912165", "dump20211126") or die("MYSQL 접속 실패 !!");
+            $con=mysqli_connect("localhost","root","21912165", "dump20211129") or die("MYSQL 접속 실패 !!");
 
             $from=date('Y-m-d',strtotime($_POST['day0']));
          
@@ -184,7 +184,7 @@ if (isset($_POST['submit'])){
       <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
         <div class="col p-4 d-flex flex-column position-static">
           <strong class="d-inline-block mb-2 text-success">Total</strong>
-          <h2 class="mb-0">백신 접종 인원</h2>
+          <h2 class="mb-0">총 백신 접종 인원</h2>
           <p class="mb-auto"></p>
    
         </div>
@@ -193,7 +193,7 @@ if (isset($_POST['submit'])){
      <?php
          
 if (isset($_POST['submit'])){
-            $con=mysqli_connect("localhost","root","21912165", "dump20211126") or die("MYSQL 접속 실패 !!");
+            $con=mysqli_connect("localhost","root","21912165", "dump20211129") or die("MYSQL 접속 실패 !!");
 
             $from=date('Y-m-d',strtotime($_POST['day0']));
             //$oquery=$con->query("select * from date WHERE day='".$_POST['day0']."'");
@@ -225,18 +225,121 @@ if (isset($_POST['submit'])){
         <?php
          
 if (isset($_POST['submit'])){
-            $con=mysqli_connect("localhost","root","21912165", "dump20211126") or die("MYSQL 접속 실패 !!");
+            $con=mysqli_connect("localhost","root","21912165", "dump20211129") or die("MYSQL 접속 실패 !!");
 
             $from=date('Y-m-d',strtotime($_POST['day0']));
             //$oquery=$con->query("select * from date WHERE day='".$_POST['day0']."'");
+            //$oquery=$con->query("select * from date WHERE day='".$_POST['day0']."'");
             $query2=$con->query
-            ("SELECT DATE_FORMAT(prod_date, '%Y%m%d') AS date2, count(*) as waste_total FROM vaccine 
-            WHERE vaccine.disuse IS NULL AND DATE(prod_date) <= '".$_POST['day0']."'");//입력받은 날짜 기준으로 누적 사망자수(확진자tbl에서 사망일을 가져와야함)
+            ("SELECT DATE_FORMAT(disuse, '%Y%m%d') AS date2, count(*) as waste_total FROM vaccine 
+            WHERE DATE(disuse) <= '".$_POST['day0']."'");//입력받은 날짜 기준으로 누적 사망자수(확진자tbl에서 사망일을 가져와야함)
             
             $row2 = $query2->fetch_array();
                echo $row2['waste_total'],"개";         
+                     
             
 }         
+      ?></text></svg>
+
+        </div>
+      </div>
+    </div>
+	
+	
+	    <div class="col-md-4">
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+          <strong class="d-inline-block mb-2 text-success">Total</strong>
+          <h2 class="mb-0">백신 보유량</h2>
+          <p class="mb-auto"></p>
+   
+        </div>
+        <div class="col-auto d-none d-lg-block">
+          <svg class="bd-placeholder-img" width="300" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text font-size="90" x="50%" y="50%" fill="#eceeef" dy=".3em">
+     <?php
+         
+if (isset($_POST['submit'])){
+            $con=mysqli_connect("localhost","root","21912165", "dump20211129") or die("MYSQL 접속 실패 !!");
+
+            $from=date('Y-m-d',strtotime($_POST['day0']));
+            //$oquery=$con->query("select * from date WHERE day='".$_POST['day0']."'");
+            $query1=$con->query
+            ("SELECT ((SELECT count(*) FROM vaccine
+WHERE DATE(prod_date) <= '".$_POST['day0']."')-(SELECT count(*) FROM vaccine WHERE DATE(disuse)<='".$_POST['day0']."')-(SELECT count(*) FROM vaccine WHERE inoculatorSSN IS not null AND DATE(prod_date)<='".$_POST['day0']."')) as 'res';
+
+");//입력받은 날짜 기준으로 누적 확진자수(확진자tbl에서 입원일을 가져와야함)
+
+            
+            $row1 = $query1->fetch_array();
+               echo $row1['res'],"명";         
+            
+}
+         
+      ?></text></svg>
+
+        </div>
+      </div>
+    </div>
+	
+	    <div class="col-md-4">
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+          <strong class="d-inline-block mb-2 text-success">Total</strong>
+          <h2 class="mb-0">일일 백신 접종 인원</h2>
+          <p class="mb-auto"></p>
+   
+        </div>
+        <div class="col-auto d-none d-lg-block">
+          <svg class="bd-placeholder-img" width="300" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text font-size="90" x="50%" y="50%" fill="#eceeef" dy=".3em">
+     <?php
+         
+if (isset($_POST['submit'])){
+            $con=mysqli_connect("localhost","root","21912165", "dump20211129") or die("MYSQL 접속 실패 !!");
+
+            $from=date('Y-m-d',strtotime($_POST['day0']));
+            //$oquery=$con->query("select * from date WHERE day='".$_POST['day0']."'");
+            $query1=$con->query
+            ("SELECT DATE_FORMAT(prod_date, '%Y%m%d') AS date1, count(*) as total FROM vaccine 
+				WHERE vaccine.inoculatorSSN IS not null AND DATE(prod_date) = '".$_POST['day0']."'");//입력받은 날짜 기준으로 누적 확진자수(확진자tbl에서 입원일을 가져와야함)
+
+            
+            $row1 = $query1->fetch_array();
+               echo $row1['total'],"명";         
+            
+}
+         
+      ?></text></svg>
+
+        </div>
+      </div>
+    </div>
+	<div class="col-md-4">
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+          <strong class="d-inline-block mb-2 text-success">Total</strong>
+          <h2 class="mb-0">국민 백신 접종률</h2>
+          <p class="mb-auto"></p>
+   
+        </div>
+        <div class="col-auto d-none d-lg-block">
+          <svg class="bd-placeholder-img" width="300" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text font-size="90" x="50%" y="50%" fill="#eceeef" dy=".3em">
+     <?php
+         
+if (isset($_POST['submit'])){
+            $con=mysqli_connect("localhost","root","21912165", "dump20211129") or die("MYSQL 접속 실패 !!");
+
+            $from=date('Y-m-d',strtotime($_POST['day0']));
+            //$oquery=$con->query("select * from date WHERE day='".$_POST['day0']."'");
+            $query1=$con->query
+            ("SELECT DATE_FORMAT(prod_date, '%Y%m%d') AS date1, count(*) as total FROM vaccine 
+				WHERE vaccine.inoculatorSSN IS not null AND DATE(prod_date) = '".$_POST['day0']."'");//입력받은 날짜 기준으로 누적 확진자수(확진자tbl에서 입원일을 가져와야함)
+
+            
+            $row1 = $query1->fetch_array();
+               echo $row1['total'],"명";         
+            
+}
+         
       ?></text></svg>
 
         </div>

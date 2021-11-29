@@ -76,8 +76,7 @@
 	"</td><td>", $row['physicianSSN'], 
 	"</td><td>", $row['exam_date'],
 	
-		   "</td>"
-		    echo "<TD>", "<a href='update.php?SSN=", $row['SSN'], "'>수정</a></TD></tr>";
+		   "</td></tr>";
    }   
   echo "</tbody></table>";	
 ?>						

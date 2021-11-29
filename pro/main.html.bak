@@ -55,8 +55,12 @@
 	병원으로 이동하기
 	</button>
 	<button type="button" class="btn btn-primary active" id="btn"
-	onclick="document.location.href='ynhos.html'">
-	제약사 홈페이지로 이동하기
+	onclick="document.location.href='moderna.php '">
+	제약사(모더나) 홈페이지로 이동하기
+	</button>
+	<button type="button" class="btn btn-primary active" id="btn"
+	onclick="document.location.href='pfizer.php '">
+	제약사(화이자) 홈페이지로 이동하기
 	</button>
 	</div> <br><br>
 	<hr class="my-4">
@@ -141,7 +145,7 @@
       </li>
 	
 	  <li>
-        <a href="#" class="nav-link link-dark">
+        <a href="vac.php" class="nav-link link-dark">
           <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>
           백신
         </a>

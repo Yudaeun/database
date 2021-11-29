@@ -1,4 +1,5 @@
 <?php
+
             $con=mysqli_connect("localhost","root","21912165", "dump20211129") or die("MYSQL 접속 실패 !!");
 
    $sql ="SELECT * FROM policytbl  ";
@@ -36,6 +37,7 @@
    }   
    mysqli_close($con);
    echo "</TABLE>"; 
+      echo "<br> <a href='main.html'> <--home</a> ";
 
 ?>
 

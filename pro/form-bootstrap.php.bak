@@ -49,14 +49,14 @@
           <div class="row">
             <div class="col-md-6 mb-3">
               <label for="name">이름   :</label>
-              <INPUT TYPE ="text" NAME="name" placeholder="김땡땡"  VALUE=<?php echo $name ?>>
+              <INPUT TYPE ="text" NAME="name" placeholder="김땡땡(필수)"  VALUE=<?php echo $name ?>>
               <div class="invalid-feedback">
                 이름을 입력해주세요.
               </div>
             </div>
             <div class="col-md-6 mb-3">
               <label for="SSN">SSN :</label>
-             <INPUT TYPE ="text"  NAME="SSN" placeholder="000000-0000000" <?php echo $SSN ?> required >
+             <INPUT TYPE ="text"  NAME="SSN" placeholder="000000-0000000(필수)" <?php echo $SSN ?> required >
               <div class="invalid-feedback">
                 SSN을 입력해주세요.
               </div>
@@ -67,13 +67,13 @@
 		   
 		    <div class="col-md-6 mb-3">
             <label for="gender">gender :</label>
-             <INPUT TYPE ="text" NAME="gender" placeholder="F/M" VALUE=<?php echo $gender ?>>
+             <INPUT TYPE ="text" NAME="gender" placeholder="F/M (필수)" VALUE=<?php echo $gender ?>>
             <div class="invalid-feedback">
              gender를 입력해주세요.
             </div>
           </div>
 		  <div class="col-md-6 mb-3">
-            exam_date : <INPUT TYPE ="text" NAME="exam_date" placeholder="0-0-0" VALUE=<?php echo $exam_date ?>>
+            exam_date : <INPUT TYPE ="text" NAME="exam_date" placeholder="0-0-0(필수)" VALUE=<?php echo $exam_date ?>>
             <div class="invalid-feedback">
               phone_number를 입력해주세요.
             </div>
@@ -91,21 +91,21 @@
 		  
 		   <div class="mb-3">
             <label for="phone_number">phone_number</label>
-            <input type="text" class="form-control" id="phone_number" placeholder="010-0000-0001"<?php echo $phone_number ?> required>
+            <input type="text" class="form-control" id="phone_number" placeholder="010-0000-0000"<?php echo $phone_number ?> required>
             <div class="invalid-feedback">
               phone_number를 입력해주세요.
             </div>
           </div>
 		  <div class="mb-3">
             <label for="license_number">license_number</label>
-            <input type="text" class="form-control" id="license_number" placeholder=""<?php echo $license_number ?> >
+            <input type="text" class="form-control" id="license_number" placeholder="000000"<?php echo $license_number ?> >
             <div class="invalid-feedback">
               license_number를 입력해주세요.
             </div>
           </div>
 		  <div class="mb-3">
             <label for="physicianSSN">physicianSSN</label>
-            <input type="text" class="form-control" id="physicianSSN" placeholder=""<?php echo $address ?> >
+            <input type="text" class="form-control" id="physicianSSN" placeholder="000000-0000001(필수)"<?php echo $address ?> >
             <div class="invalid-feedback">
               physicianSSN를 입력해주세요.
             </div>

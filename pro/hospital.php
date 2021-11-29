@@ -87,7 +87,7 @@
   <div class="nav-scroller py-1 mb-2">
     <nav class="nav d-flex justify-content-between">
       <button type="button" class="btn btn-primary active" id="btn"
-	onclick="document.location.href='ynhos.html'">
+	onclick="document.location.href='hs_login.php'">
 	병원으로 바로가기
 	</button>
 
@@ -125,7 +125,7 @@
 </div>
 <?php
 if (isset($_POST['submit'])){
-			$con=mysqli_connect("localhost","root","21912165","dump20211126") or die("MySQL 접속 실패 !!");
+            $con=mysqli_connect("localhost","root","21912165", "dump20211129") or die("MYSQL 접속 실패 !!");
 
 				$from=date('Y-m-d',strtotime($_POST['day0']));
 				echo "입력한 날짜: ";
@@ -151,7 +151,7 @@ if (isset($_POST['submit'])){
         </div>
         <div class="col-auto d-none d-lg-block">
  <svg class="bd-placeholder-img" width="300" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text font-size="90" x="50%" y="50%" fill="#eceeef" dy=".3em">		  <?php
-			$con=mysqli_connect("localhost","root","21912165","dump20211126") or die("MySQL 접속 실패 !!");
+            $con=mysqli_connect("localhost","root","21912165", "dump20211129") or die("MYSQL 접속 실패 !!");
 	
 	$sql="SELECT SUM(sickbed) as bs FROM hospitaltbl";
 	
@@ -177,7 +177,7 @@ if (isset($_POST['submit'])){
         <div class="col-auto d-none d-lg-block">
  <svg class="bd-placeholder-img" width="300" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text font-size="90" x="50%" y="50%" fill="#eceeef" dy=".3em"><?php
 			if (isset($_POST['submit'])){
-			$con=mysqli_connect("localhost","root","21912165","dump20211126") or die("MySQL 접속 실패 !!");
+            $con=mysqli_connect("localhost","root","21912165", "dump20211129") or die("MYSQL 접속 실패 !!");
 
 				$from=date('Y-m-d',strtotime($_POST['day0']));
 			
@@ -207,7 +207,7 @@ if (isset($_POST['submit'])){
         <div class="col-auto d-none d-lg-block">
  <svg class="bd-placeholder-img" width="300" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text font-size="90" x="50%" y="50%" fill="#eceeef" dy=".3em">		  <?php
 			if (isset($_POST['submit'])){
-			$con=mysqli_connect("localhost","root","21912165","dump20211126") or die("MySQL 접속 실패 !!");
+            $con=mysqli_connect("localhost","root","21912165", "dump20211129") or die("MYSQL 접속 실패 !!");
 
 				$from=date('Y-m-d',strtotime($_POST['day0']));
 			
@@ -241,7 +241,7 @@ where hospitalization_date<='".$_POST['day0']."' and (discharge_date>='".$_POST[
         <div class="col-auto d-none d-lg-block">
  <svg class="bd-placeholder-img" width="300" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text font-size="90" x="50%" y="50%" fill="#eceeef" dy=".3em">		  <?php
 			if (isset($_POST['submit'])){
-			$con=mysqli_connect("localhost","root","21912165","dump20211126") or die("MySQL 접속 실패 !!");
+            $con=mysqli_connect("localhost","root","21912165", "dump20211129") or die("MYSQL 접속 실패 !!");
 
 				$from=date('Y-m-d',strtotime($_POST['day0']));
 			
@@ -274,7 +274,7 @@ where hosCRN='112-52-45982' and hospitalization_date<='".$_POST['day0']."' and
         <div class="col-auto d-none d-lg-block">
  <svg class="bd-placeholder-img" width="300" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text font-size="90" x="50%" y="50%" fill="#eceeef" dy=".3em">		  <?php
 			if (isset($_POST['submit'])){
-			$con=mysqli_connect("localhost","root","21912165","dump20211126") or die("MySQL 접속 실패 !!");
+            $con=mysqli_connect("localhost","root","21912165", "dump20211129") or die("MYSQL 접속 실패 !!");
 
 				$from=date('Y-m-d',strtotime($_POST['day0']));
 			
@@ -308,7 +308,7 @@ where hosCRN='328-09-34183' and hospitalization_date<='".$_POST['day0']."' and
         <div class="col-auto d-none d-lg-block">
  <svg class="bd-placeholder-img" width="300" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text font-size="90" x="50%" y="50%" fill="#eceeef" dy=".3em">		 <?php
 			if (isset($_POST['submit'])){
-			$con=mysqli_connect("localhost","root","21912165","dump20211126") or die("MySQL 접속 실패 !!");
+            $con=mysqli_connect("localhost","root","21912165", "dump20211129") or die("MYSQL 접속 실패 !!");
 
 				$from=date('Y-m-d',strtotime($_POST['day0']));
 			

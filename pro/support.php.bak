@@ -115,7 +115,7 @@
 </div>
 <?php
 if (isset($_POST['submit'])){
-            $con=mysqli_connect("localhost","root","21912165", "dump20211129") or die("MYSQL 접속 실패 !!");
+				$con=mysqli_connect("localhost","root","dbspffldks5","corona") or die("MYSQL 접속 실패 !!");
 
 				$from=date('Y-m-d',strtotime($_POST['day0']));
 				echo "입력한 날짜: ";
@@ -157,7 +157,7 @@ if (isset($_POST['submit'])){
         <div class="col-auto d-none d-lg-block">
  <svg class="bd-placeholder-img" width="300" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#A1C5D0"></rect><text font-size="50" x="50%" y="50%" fill="#030303" dy=".3em">		
  <?php
-            $con=mysqli_connect("localhost","root","21912165", "dump20211129") or die("MYSQL 접속 실패 !!");
+			$con=mysqli_connect("localhost","root","21912165","dump20211126") or die("MySQL 접속 실패 !!");
 				$mung=$con->query
 				("Select sum(budget) as cnt from aidtbl;");
 				$orow = $mung->fetch_array();
@@ -215,7 +215,7 @@ if (isset($_POST['submit'])){
 		  <?php
 			
 if (isset($_POST['submit'])){
-            $con=mysqli_connect("localhost","root","21912165", "dump20211129") or die("MYSQL 접속 실패 !!");
+			$con=mysqli_connect("localhost","root","21912165","dump20211126") or die("MySQL 접속 실패 !!");
 
 				$from=date('Y-m-d',strtotime($_POST['day0']));
 				//$oquery=$con->query("select * from date WHERE day='".$_POST['day0']."'");

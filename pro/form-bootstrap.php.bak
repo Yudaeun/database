@@ -49,7 +49,7 @@
           
             <div class="mb-3">
               <label for="name">이름   :</label>
-              <INPUT TYPE ="text" NAME="name" placeholder="김땡땡(필수)"  VALUE=<?php echo $name ?>>
+              <INPUT TYPE ="text" NAME="name" placeholder="김땡땡(필수)"  VALUE=<?php echo $name ?> required>
               <div class="invalid-feedback">
                 이름을 입력해주세요.
               </div>
@@ -73,7 +73,7 @@
             </div>
           </div>
 		     <div class="col-md-6 mb-3">
-            death_day : <INPUT TYPE ="text" NAME="death_day" placeholder="0-0-0(필수)" VALUE=<?php echo $death_day ?>>
+            death_day : <INPUT TYPE ="text" NAME="death_day" placeholder="0-0-0(default)" VALUE=<?php echo $death_day ?>>
             <div class="invalid-feedback">
               death_day를 입력해주세요.
             </div>
@@ -115,7 +115,7 @@
         <div class="row">
 		    <div class="col-md-6 mb-3">
            
-            exam_date : <INPUT TYPE ="text" NAME="exam_date" placeholder="0-0-0(필수)" VALUE=<?php echo $exam_date ?>>
+            exam_date : <INPUT TYPE ="text" NAME="exam_date" placeholder="0-0-0(default)" VALUE=<?php echo $exam_date ?>>
             <div class="invalid-feedback">
              exam_date를 입력해주세요.
             </div>

@@ -231,8 +231,8 @@ if (isset($_POST['submit'])){
             //$oquery=$con->query("select * from date WHERE day='".$_POST['day0']."'");
             //$oquery=$con->query("select * from date WHERE day='".$_POST['day0']."'");
             $query2=$con->query
-            ("SELECT DATE_FORMAT(disuse, '%Y%m%d') AS date2, count(*) as waste_total FROM vaccine 
-            WHERE DATE(disuse) <= '".$_POST['day0']."'");//입력받은 날짜 기준으로 누적 사망자수(확진자tbl에서 사망일을 가져와야함)
+            ("SELECT DATE_FORMAT(disuse_date, '%Y%m%d') AS date2, count(*) as waste_total FROM vaccine 
+            WHERE DATE(disuse_date) <= '".$_POST['day0']."'");//입력받은 날짜 기준으로 누적 사망자수(확진자tbl에서 사망일을 가져와야함)
             
             $row2 = $query2->fetch_array();
                echo $row2['waste_total'],"개";         
@@ -265,13 +265,13 @@ if (isset($_POST['submit'])){
             //$oquery=$con->query("select * from date WHERE day='".$_POST['day0']."'");
             $query1=$con->query
             ("SELECT ((SELECT count(*) FROM vaccine
-WHERE DATE(prod_date) <= '".$_POST['day0']."')-(SELECT count(*) FROM vaccine WHERE DATE(disuse)<='".$_POST['day0']."')-(SELECT count(*) FROM vaccine WHERE inoculatorSSN IS not null AND DATE(inoculation_date)<='".$_POST['day0']."')) as 'res';
+WHERE DATE(prod_date) <= '".$_POST['day0']."')-(SELECT count(*) FROM vaccine WHERE DATE(disuse_date)<='".$_POST['day0']."')-(SELECT count(*) FROM vaccine WHERE inoculatorSSN IS not null AND DATE(inoculation_date)<='".$_POST['day0']."')) as 'res';
 
 ");//입력받은 날짜 기준으로 누적 확진자수(확진자tbl에서 입원일을 가져와야함)
 
             
             $row1 = $query1->fetch_array();
-               echo $row1['res'],"명";         
+               echo $row1['res'],"개";         
             
 }
          

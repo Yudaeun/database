@@ -49,7 +49,7 @@
           
             <div class="mb-3">
               <label for="name">이름   :</label>
-              <INPUT TYPE ="text" NAME="name" placeholder="김땡땡(필수)"  VALUE=<?php echo $name ?>>
+              <INPUT TYPE ="text" NAME="name" placeholder="김땡땡(필수)"  VALUE=<?php echo "$name" ?> >
               <div class="invalid-feedback">
                 이름을 입력해주세요.
               </div>

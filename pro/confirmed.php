@@ -196,7 +196,7 @@ if (isset($_POST['submit'])){
 				//$oquery=$con->query("select * from date WHERE day='".$_POST['day0']."'");
 				$query1=$con->query
 				("SELECT DATE_FORMAT(hospitalizaton_day, '%Y%m%d') AS date1, count(*) as total FROM hospitalizationtbl 
-				WHERE DATE(hospitalizaton_day) <= '".$_POST['day0']."'");//입력받은 날짜 기준으로 누적 확진자수(확진자tbl에서 입원일을 가져와야함)
+				WHERE DATE(hospitalizaton_day) <= '".$_POST['day0']."' and hospitalizaton_day > '0-0-1'");//입력받은 날짜 기준으로 누적 확진자수(확진자tbl에서 입원일을 가져와야함)
 				
 				$row1 = $query1->fetch_array();
 					echo $row1['total'],"명";			
@@ -227,7 +227,7 @@ if (isset($_POST['submit'])){
 				//$oquery=$con->query("select * from date WHERE day='".$_POST['day0']."'");
 				$query2=$con->query
 				("SELECT DATE_FORMAT(death_day, '%Y%m%d') AS date2, count(*) as die_total FROM publictbl 
-				WHERE DATE(death_day) <= '".$_POST['day0']."'");//입력받은 날짜 기준으로 누적 사망자수(확진자tbl에서 사망일을 가져와야함)
+				WHERE DATE(death_day) <= '".$_POST['day0']."' and death_day > '0-0-1'");//입력받은 날짜 기준으로 누적 사망자수(확진자tbl에서 사망일을 가져와야함)
 				
 				$row2 = $query2->fetch_array();
 					echo $row2['die_total'],"명";			
@@ -272,7 +272,7 @@ if (isset($_POST['submit'])){
       <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
         <div class="col p-4 d-flex flex-column position-static">
           <strong class="d-inline-block mb-2 text-success">Total</strong>
-          <h2 class="mb-0">인구 100명당 확진 비율</h2>
+          <h2 class="mb-0">전체 국민 중 확진 비율</h2>
           <p class="mb-auto"></p>
           
         </div>
@@ -289,7 +289,7 @@ if (isset($_POST['submit'])){
 				("SELECT concat(round((SELECT count(SSN) FROM visittbl CF 
 INNER JOIN publictbl PB
 ON CF.visitSSN = PB.SSN
-WHERE PB.confirmed='Y' and comfimred_date <= '".$_POST['day0']."')/(SELECT count(*) FROM publictbl)*100,0),'%') as 'res'");//입력받은 날짜 기준으로 인구 100명당 확진자비율(확진자tbl이랑 국민 tbl조인해서 확진여부 Y인 사람 count/전체사람count)
+WHERE PB.confirmed='Y' and confirmed_date > '0-0-1' and confirmed_date <= '".$_POST['day0']."')/(SELECT count(*) FROM publictbl)*100,0),'%') as 'res'");//입력받은 날짜 기준으로 인구 100명당 확진자비율(확진자tbl이랑 국민 tbl조인해서 확진여부 Y인 사람 count/전체사람count)
 				
 				$row2 = $query2->fetch_array();
 					echo $row2['res'];			
@@ -323,7 +323,7 @@ if (isset($_POST['submit'])){
 FROM visittbl CF
 INNER JOIN publictbl PB
 ON CF.visitSSN = PB.SSN
-WHERE CF.comfimred_date <= '".$_POST['day0']."'");//입력받은 날짜 기준으로 인구 100명당 확진자비율(확진자tbl이랑 국민 tbl조인해서 확진여부 Y인 사람 count/전체사람count)
+WHERE CF.confirmed_date <= '".$_POST['day0']."' and CF.confirmed_date > '0-0-1'");//입력받은 날짜 기준으로 인구 100명당 확진자비율(확진자tbl이랑 국민 tbl조인해서 확진여부 Y인 사람 count/전체사람count)
 				
 				$row2 = $query2->fetch_array();
 					echo "남성: ", $row2['남성']," 명 ";	

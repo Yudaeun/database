@@ -138,7 +138,11 @@ if (isset($_POST['submit'])){
   <hr color="black"></hr>
     <h1>병원 통계 현황 		<button type="button" class="btn btn-primary active" id="btn"
 	onclick="document.location.href='ward.php'">
-	병원 입원 환자 조회
+	내원 환자 조회
+	</button>
+	<button type="button" class="btn btn-primary active" id="btn"
+	onclick="document.location.href='ward.php'">
+	병동 조회
 	</button><hr color="black"></hr> </h1>
   <div class="row mb-3">
     <div class="col-md-4">

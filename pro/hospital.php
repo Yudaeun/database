@@ -158,6 +158,7 @@ if (isset($_POST['submit'])){
             $con=mysqli_connect("localhost","root","21912165", "dump20211129") or die("MYSQL 접속 실패 !!");
 	
 	$sql="SELECT SUM(sickbed) as bs FROM hospitaltbl";
+	//sum함수 이용해서 현재 모든 병원의 보유병상 현황 나타냄
 	
 	$ret=mysqli_query($con,$sql);	
 	$row=mysqli_fetch_array($ret);
@@ -187,7 +188,10 @@ if (isset($_POST['submit'])){
 			
 				//$oquery=$con->query("select * from date WHERE day='".$_POST['day0']."'");
 				$mung=$con->query
-				("select count(wardID) as cnt from hospitalizationtbl where hospitalizaton_day<='".$_POST['day0']."'");//입력받은 날짜 기준으로 현재 가용병상
+				("select count(wardID) as cnt from hospitalizationtbl 
+				where  hospitalization_day<='".$_POST['day0']."' 
+				and (discharge_day>='".$_POST['day0']."' or discharge_day is null)");
+				//입력받은 날짜 기준으로 현재 가용병상(현재 날짜가 입원일보다 같거나 크고 퇴원일이 null이거나 퇴원일보다 같거나 작음)을 count해서 나타냄
 				$orow = $mung->fetch_array();
 					
 					
@@ -219,7 +223,9 @@ if (isset($_POST['submit'])){
 				$mung=$con->query
 				("SELECT truncate(count(wardID)/76,2)*100 as per 
 FROM hospitalizationtbl
-where hospitalizaton_day<='".$_POST['day0']."' and (discharge_day>='".$_POST['day0']."' or discharge_day is null)");
+where hospitalization_day<='".$_POST['day0']."' 
+and (discharge_day>='".$_POST['day0']."' or discharge_day is null)");
+//현재 가동률을 입원일과 퇴원일을 이용해서 구한 가동병상에 전체 병상을 나누어서 계산
 				$orow = $mung->fetch_array();
 					
 					
@@ -253,8 +259,9 @@ where hospitalizaton_day<='".$_POST['day0']."' and (discharge_day>='".$_POST['da
 				$mung=$con->query
 				("SELECT count(*) as y
 from hospitalizationtbl as ht INNER JOIN wardtbl as wt ON wt.wardId=ht.wardID
-where hosCRN='112-52-45982' and hospitalizaton_day<='".$_POST['day0']."' and 
+where hosCRN='112-52-45982' and hospitalization_day<='".$_POST['day0']."' and 
 (discharge_day>='".$_POST['day0']."' or discharge_day is null)");
+//입원 테이블과 병동테이블을 조인해서 입원환자의 병원을 crn을 통해 알아낸 뒤, 이때 경북대병원에 입원해 있는 입원 환자를 입원일과 퇴원일을 이용해 계산(현재날짜기준으로)
 				$orow = $mung->fetch_array();
 					
 					
@@ -286,8 +293,10 @@ where hosCRN='112-52-45982' and hospitalizaton_day<='".$_POST['day0']."' and
 				$mung=$con->query
 				("SELECT count(*) as y
 from hospitalizationtbl as ht INNER JOIN wardtbl as wt ON wt.wardId=ht.wardID
-where hosCRN='328-09-34183' and hospitalizaton_day<='".$_POST['day0']."' and 
+where hosCRN='328-09-34183' and hospitalization_day<='".$_POST['day0']."' and 
 (discharge_day>='".$_POST['day0']."' or discharge_day is null)");
+//입원 테이블과 병동테이블을 조인해서 입원환자의 병원을 crn을 통해 알아낸 뒤, 이때 영남대병원에 입원해 있는 입원 환자를 입원일과 퇴원일을 이용해 계산(현재날짜기준으로)
+
 				$orow = $mung->fetch_array();
 					
 					
@@ -320,8 +329,10 @@ where hosCRN='328-09-34183' and hospitalizaton_day<='".$_POST['day0']."' and
 				$mung=$con->query
 				("SELECT count(*) as y
 from hospitalizationtbl as ht INNER JOIN wardtbl as wt ON wt.wardId=ht.wardID
-where hosCRN='243-48-34791' and hospitalizaton_day<='".$_POST['day0']."' and 
+where hosCRN='243-48-34791' and hospitalization_day<='".$_POST['day0']."' and 
 (discharge_day>='".$_POST['day0']."' or discharge_day is null)");
+//입원 테이블과 병동테이블을 조인해서 입원환자의 병원을 crn을 통해 알아낸 뒤, 이때 대구병원에 입원해 있는 입원 환자를 입원일과 퇴원일을 이용해 계산(현재날짜기준으로)
+
 				$orow = $mung->fetch_array();
 					
 					

@@ -68,15 +68,18 @@
 <?php
 	$con = mysqli_connect("localhost", "root", "21912165", "dump20211129") or die("MySQL 접속 실패 !!");
 
-$sql ="SELECT * FROM confirmedtbl ";
+$sql ="SELECT * FROM hospitalizationtbl ";
  
    $ret = mysqli_query($con, $sql);   
-   echo "<thead><tr><th>cfSSN</th><th>confirmed_day</th><th>wardID</th><th>symptom</th></tr></thead><tbody>";
+   echo "<thead><tr><th>hospID</th><th>patientSSN</th><th>wardID</th><th>hospitalization_day</th><th>discharge_day</th><th>physicianssn</th></tr></thead><tbody>";
  while($row = mysqli_fetch_array($ret)) {
-	  echo "<tr><td>", $row['cfSSN'], 
-	  "</td><td>", $row['confirmed_day'], 
+	  echo "<tr><td>", $row['hospID'], 
+	  "</td><td>", $row['patientSSN'], 
 	  "</td><td>", $row['wardID'], 
-	 "</td><td>", $row['symptom'], 
+	 "</td><td>", $row['hospitalization_day'], 
+	 	 "</td><td>", $row['discharge_day'], 
+	 "</td><td>", $row['physicianssn'], 
+
 	
 	
 		   "</td></tr>";

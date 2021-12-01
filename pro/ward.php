@@ -68,17 +68,18 @@
 <?php
 	$con = mysqli_connect("localhost", "root", "21912165", "dump20211129") or die("MySQL 접속 실패 !!");
 
-	  $sql ="SELECT * FROM hospitalizationtbl  ";
+	  $sql ="SELECT * FROM visittbl  ";
  
    $ret = mysqli_query($con, $sql);   
-   echo "<thead><tr><th>hospID</th><th>patientSSN</th><th>wardID</th><th>hospitalizaton_day</th><th>discharge_day</th><th>physicianssn</th></tr></thead><tbody>";
+   echo "<thead><tr><th>visitname</th><th>visitSSN</th><th>hosCRN</th><th>exam_date</th><th>confirmed_date</th><th>symptom</th><th>physicianSSN</th></tr></thead><tbody>";
  while($row = mysqli_fetch_array($ret)) {
-	  echo "<tr><td>", $row['hospID'], 
-	  "</td><td>", $row['patientSSN'], 
-	  "</td><td>", $row['wardID'], 
-	 "</td><td>", $row['hospitalizaton_day'], 
-	 "</td><td>", $row['discharge_day'], 
-	"</td><td>", $row['physicianssn'], 
+	  echo "<tr><td>", $row['visitname'], 
+	  "</td><td>", $row['visitSSN'], 
+	  "</td><td>", $row['hosCRN'], 
+	 "</td><td>", $row['exam_date'], 
+	 	 "</td><td>", $row['confirmed_date'], 
+	 "</td><td>", $row['symptom'], 
+	"</td><td>", $row['physicianSSN'], 
 	
 		   "</td></tr>";
    }   

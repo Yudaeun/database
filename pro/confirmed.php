@@ -163,8 +163,8 @@ if (isset($_POST['submit'])){
 			
 				//$oquery=$con->query("select * from date WHERE day='".$_POST['day0']."'");
 				$mung=$con->query
-				("SELECT DATE_FORMAT(hospitalizaton_day, '%Y%m%d')AS date, 
-				count(*) AS cnt FROM hospitalizationtbl WHERE hospitalizaton_day='".$_POST['day0']."'");//입력받은 날짜 기준으로 일일 확진자수(확진자tbl에서 입원일을 가져와야함)
+				("SELECT DATE_FORMAT(hospitalization_day, '%Y%m%d')AS date, 
+				count(*) AS cnt FROM hospitalizationtbl WHERE hospitalization_day='".$_POST['day0']."'");//입력받은 날짜 기준으로 일일 확진자수(확진자tbl에서 입원일을 가져와야함)
 				$orow = $mung->fetch_array();
 					
 					
@@ -195,8 +195,8 @@ if (isset($_POST['submit'])){
 				$from=date('Y-m-d',strtotime($_POST['day0']));
 				//$oquery=$con->query("select * from date WHERE day='".$_POST['day0']."'");
 				$query1=$con->query
-				("SELECT DATE_FORMAT(hospitalizaton_day, '%Y%m%d') AS date1, count(*) as total FROM hospitalizationtbl 
-				WHERE DATE(hospitalizaton_day) <= '".$_POST['day0']."' and hospitalizaton_day > '0-0-1'");//입력받은 날짜 기준으로 누적 확진자수(확진자tbl에서 입원일을 가져와야함)
+				("SELECT DATE_FORMAT(hospitalization_day, '%Y%m%d') AS date1, count(*) as total FROM hospitalizationtbl 
+				WHERE DATE(hospitalization_day) <= '".$_POST['day0']."' and hospitalization_day > '0-0-1'");//입력받은 날짜 기준으로 누적 확진자수(확진자tbl에서 입원일을 가져와야함)
 				
 				$row1 = $query1->fetch_array();
 					echo $row1['total'],"명";			

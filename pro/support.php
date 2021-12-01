@@ -159,7 +159,7 @@ if (isset($_POST['submit'])){
  <?php
             $con=mysqli_connect("localhost","root","21912165", "dump20211129") or die("MYSQL 접속 실패 !!");
 				$mung=$con->query
-				("Select sum(budget) as cnt from aidtbl;");
+				("Select sum(budget) as cnt from aidtbl;");//조회할 날짜를 입력 받으면 날짜에 따라 배정 예산 총합계를 나타냄
 				$orow = $mung->fetch_array();
 					
 					
@@ -190,7 +190,8 @@ if (isset($_POST['submit'])){
 				$from=date('Y-m-d',strtotime($_POST['day0']));
 				//$oquery=$con->query("select * from date WHERE day='".$_POST['day0']."'");
 				$query1=$con->query
-				("select count(budget) as total from aidtbl where application_date<='".$_POST['day0']."' and processing_status='Y'");//입력받은 날짜 기준으로 누적 확진자수(확진자tbl에서 입원일을 가져와야함)
+				("select count(budget) as total from aidtbl where application_date<='".$_POST['day0']."' and processing_status='Y'");
+				//입력받은 날짜 기준으로 신청 날짜별로 신청 완료된 건수를 나타냄
 				
 				$row1 = $query1->fetch_array();
 					echo $row1['total'],"건수 완료";			
@@ -220,7 +221,8 @@ if (isset($_POST['submit'])){
 				$from=date('Y-m-d',strtotime($_POST['day0']));
 				//$oquery=$con->query("select * from date WHERE day='".$_POST['day0']."'");
 				$query2=$con->query
-				("select sum(budget) as total from aidtbl where application_date<='".$_POST['day0']."' and processing_status='Y'");//입력받은 날짜 기준으로 누적 사망자수(확진자tbl에서 사망일을 가져와야함)
+				("select sum(budget) as total from aidtbl where application_date<='".$_POST['day0']."' and processing_status='Y'");
+				//입력받은 날짜 기준으로 처리 완료 된 현재 지원금(사용한 지원금) 합계 나타냄
 				
 				$row2 = $query2->fetch_array();
 					echo $row2['total'],"원";			
